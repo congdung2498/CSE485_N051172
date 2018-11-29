@@ -1,0 +1,10 @@
+.container img{
+    width: 70px;
+    height: auto;
+    padding: 4px;
+}
+.container h3{
+    color: rgb(134, 134, 243);
+    padding: 0px;
+
+}
