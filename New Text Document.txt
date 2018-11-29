@@ -1,3 +1,4 @@
 ﻿coppy cái vừa làm vào mục này.
 những cái màu đỏ là đã xóa. 
 ấn commit to master để đẩy code lên. xong ấn fetch orgin
+coppy cái file html lúc chiều về xong đẩy lên xem nào...
