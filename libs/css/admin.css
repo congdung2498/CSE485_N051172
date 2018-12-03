@@ -41,3 +41,32 @@
 .delete-pdf{ margin-left:.5em; }
 .delete-pdf img{ width:20px; cursor:pointer; }
 .pdf-item{ padding:0 0 1em 0; }
+
+.alert{
+    position: relative;
+    -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s;  /* Safari 4.0 - 8.0 */    
+    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+}
+@-webkit-keyframes example {
+    from {top: 200px;}
+    to {top:0px; }
+}
+
+@keyframes example {
+    from {top: 200px;}
+    to {top: 0px ;}
+}
+
+.container{
+    position: relative;
+    -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s;  /* Safari 4.0 - 8.0 */    
+    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+}
