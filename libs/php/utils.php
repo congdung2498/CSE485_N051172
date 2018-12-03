@@ -35,8 +35,8 @@ public function sendEmailViaPhpMail($send_to_email, $subject, $body){
 $mail->isSMTP();                                      // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'dunglc62@wru.vn';                 // SMTP username
-$mail->Password = 'lecongdung1998';                           // SMTP password
+$mail->Username = 'test.app.2418@gmail.com';                 // SMTP username
+$mail->Password = 'matkhaulagi?';                           // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                                    // TCP port to connect to
 
