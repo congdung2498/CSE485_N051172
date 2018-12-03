@@ -1,45 +1,90 @@
+<div ng-app="testApp" ng-controller="userCtrl">
+<div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" id="mydivheader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> Quản lý tài khoản</h4>
+                    </div>
+                    <div class="modal-body">
+
+                    <div class="row">
+			        	<div class="col-xs-6">
+					        <label class="bold">Họ</label>
+				    	    <input type="text" readonly class="form-control" ng-model="user.firstname" />
+			    	    </div>
+                            <div class="col-xs-6">
+                            <label class="bold">Tên</label>
+				    	<input type="text" readonly class="form-control" ng-model="user.lastname" />
+				        </div>
+                    </div>
+                    
+                    <div class="row">
+			        	<div class="col-xs-6">
+					        <label class="bold">Email</label>
+				    	    <input type="text" readonly class="form-control" ng-model="user.email" />
+			    	    </div>
+                            <div class="col-xs-6">
+                            <label class="bold">Số điện thoại</label>
+				    	<input type="text" readonly class="form-control" ng-model="user.contact_number" />
+				        </div>
+                    </div>
+
+                    <div class="row">
+			        	<div class="col-xs-12">
+					        <label class="bold">Địa chỉ</label>
+				    	    <input type="text" readonly class="form-control" ng-model="user.address" />
+			    	    </div>
+                    </div>
+
+                     <div class="row">
+			        	<div class="col-xs-12">
+					        <label class="bold">Phân quyền</label>
+				    	    <select class="form-control" ng-model="user.access_level">
+                                <option value='Admin'>Admin</option>
+                                <option value='Customer'>Customer</option>
+                            </select>
+			    	    </div>
+                    </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="saveUser()" class="btn btn-primary" data-dismiss="modal">Lưu</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editUser()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i>Sửa</button>
+    <div>
+
+    <div class="alert alert-success alert-dismissible" ng-if="result==1">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Thành công!</strong> Bạn đã cập nhật thành công.
+    </div>
+
+    <div class="alert alert-danger" ng-if="result==0">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Lỗi!</strong> Có Lỗi xảy ra trong quá trình cập nhật.
+    </div>
+
+    <table bs-table-control="bsTableControl"></table>
+    </div>
 <?php
 // display the table if the number of users retrieved was greater than zero
-if($num>0){
- 
-    echo "<table class='table table-hover table-responsive table-bordered'>";
- 
-    // table headers
-    echo "<tr>";
-        echo "<th>Firstname</th>";
-        echo "<th>Lastname</th>";
-        echo "<th>Email</th>";
-        echo "<th>Contact Number</th>";
-        echo "<th>Access Level</th>";
-    echo "</tr>";
- 
-    // loop through the user records
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-        extract($row);
- 
-        // display user details
-        echo "<tr>";
-            echo "<td>{$firstname}</td>";
-            echo "<td>{$lastname}</td>";
-            echo "<td>{$email}</td>";
-            echo "<td>{$contact_number}</td>";
-            echo "<td>{$access_level}</td>";
-        echo "</tr>";
-        }
- 
-    echo "</table>";
+
  
     $page_url="read_users.php?";
     $total_rows = $user->countAll();
  
     // actual paging buttons
-    include_once 'paging.php';
-}
+   
+
  
 // tell the user there are no selfies
-else{
-    echo "<div class='alert alert-danger'>
-        <strong>No users found.</strong>
-    </div>";
-}
+
 ?>
+</div>
