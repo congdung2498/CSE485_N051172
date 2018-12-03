@@ -95,3 +95,31 @@ div#blueimp-gallery div.modal{ overflow: visible; }
     -webkit-border-radius: 50%;
     border-radius: 50%;
 }
+.alert{
+    position: relative;
+    -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s;  /* Safari 4.0 - 8.0 */    
+    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+}
+@-webkit-keyframes example {
+    from {top: 200px;}
+    to {top:0px; }
+}
+
+@keyframes example {
+    from {top: 200px;}
+    to {top: 0px ;}
+}
+
+.container{
+    position: relative;
+    -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 1s;  /* Safari 4.0 - 8.0 */    
+    -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 1s;    
+    animation-fill-mode: forwards;
+}
