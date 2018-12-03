@@ -7,16 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
     <title><?php echo isset($page_title) ? strip_tags($page_title) : "Store Admin"; ?></title>
- 
-    <!-- Bootstrap CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" media="screen" />
- 
-    <!-- admin custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css" />
+  
+     <!-- admin custom CSS -->
     <link href="<?php echo $home_url . "libs/css/admin.css" ?>" rel="stylesheet" />
  
 </head>
-<body>
- 
+<body ng-controller="TestAppCtrl">
+
     <?php
     // include top navigation bar
     include_once "navigation.php";
