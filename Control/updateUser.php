@@ -1,10 +1,6 @@
 <?php
-	$details=array();
-	$details['server_host']="localhost";//server host name
-	$details['mysql_name']="root";//your mysql user name
-	$details['mysql_password']="";//your mysql user name
-	$details['mysql_database']="php_login_system";//your database name
 
+    include_once "../config/dbconfig.php";
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
 	$firstname = $request->user->firstname;
