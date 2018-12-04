@@ -26,8 +26,12 @@
  
                 <!-- highlight for user related pages -->
                 <li <?php
-                        echo $page_title=="Users" ? "class='active'" : ""; ?> >
+                        echo $page_title=="Danh mục người dùng" ? "class='active'" : ""; ?> >
                     <a href="<?php echo $home_url; ?>admin/read_users.php">Users</a>
+                </li>
+                <li <?php
+                        echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
+                    <a href="<?php echo $home_url; ?>admin/category/question.php">Câu hỏi</a>
                 </li>
             </ul>
  
