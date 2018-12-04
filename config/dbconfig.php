@@ -3,5 +3,5 @@ $details=array();
 $details['server_host']="localhost";//server host name
 $details['mysql_name']="root";//your mysql user name
 $details['mysql_password']="";//your mysql user name
-$details['mysql_database']="php_login_system";//your database name
+$details['mysql_database']="test-app";//your database name
 ?>
