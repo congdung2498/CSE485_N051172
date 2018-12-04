@@ -33,6 +33,13 @@
                         echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
                     <a href="<?php echo $home_url; ?>admin/category/question.php">Câu hỏi</a>
                 </li>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Danh muc <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                   <li><a href="#">Thi sinh</a></li>
+                   <li><a href="#">Phong thi</a></li>
+                   <li><a href="#">Do kho cau hoi </a></li>
+                  </ul>
+                </li>
             </ul>
  
             <!-- options in the upper right corner of the page -->
