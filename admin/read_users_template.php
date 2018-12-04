@@ -1,3 +1,4 @@
+
 <div ng-app="testApp" ng-controller="userCtrl">
 <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
@@ -73,6 +74,7 @@
 
     <table bs-table-control="bsTableControl"></table>
     </div>
+  
 <?php
 // display the table if the number of users retrieved was greater than zero
 
@@ -87,4 +89,5 @@
 // tell the user there are no selfies
 
 ?>
+
 </div>
