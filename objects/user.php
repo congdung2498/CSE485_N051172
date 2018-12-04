@@ -28,7 +28,7 @@ class User{
     public function emailExists(){
  
     // query to check if email exists
-    $query = "SELECT id, firstname, lastname, access_level, password, status
+    $query = "SELECT ID_User, firstname, lastname, access_level, password, status
             FROM " . $this->table_name . "
             WHERE email = ?
             LIMIT 0,1";
@@ -55,7 +55,7 @@ class User{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
         // assign values to object properties
-        $this->id = $row['id'];
+        $this->id = $row['ID_User'];
         $this->firstname = $row['firstname'];
         $this->lastname = $row['lastname'];
         $this->access_level = $row['access_level'];
@@ -138,7 +138,7 @@ class User{
  
     // query to read all user records, with limit clause for pagination
     $query = "SELECT
-                id,
+                ID_User,
                 firstname,
                 lastname,
                 email,
@@ -211,7 +211,7 @@ function updateStatusByAccessCode(){
 function accessCodeExists(){
  
     // query to check if access_code exists
-    $query = "SELECT id
+    $query = "SELECT ID_User
             FROM " . $this->table_name . "
             WHERE access_code = ?
             LIMIT 0,1";
