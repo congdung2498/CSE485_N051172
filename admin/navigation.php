@@ -1,4 +1,5 @@
 <!-- navbar -->
+<link rel="stylesheet" href="nav.css">
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
  
@@ -12,7 +13,7 @@
             </button>
  
             <!-- Change "Site Admin" to your site name -->
-            <a class="navbar-brand" href="<?php echo $home_url; ?>admin/index.php">Admin</a>
+            <a class="navbar-brand" href="<?php echo $home_url; ?>admin/index.php"><span class="glyphicon glyphicon-education"></span>Admin</a>
         </div>
  
         <div class="navbar-collapse collapse">
@@ -21,23 +22,23 @@
  
                 <!-- highlight for order related pages -->
                 <li <?php echo $page_title=="Admin Index" ? "class='active'" : ""; ?>>
-                    <a href="<?php echo $home_url; ?>admin/index.php">Home</a>
+                    <a href="<?php echo $home_url; ?>admin/index.php"><span class="glyphicon glyphicon-home"></span> Home</a>
                 </li>
  
                 <!-- highlight for user related pages -->
                 <li <?php
                         echo $page_title=="Danh mục người dùng" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/read_users.php">Users</a>
+                    <a href="<?php echo $home_url; ?>admin/read_users.php"><span class=""><span class="glyphicon glyphicon-user"></span> Users</a>
                 </li>
                 <li <?php
                         echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/category/question.php">Câu hỏi</a>
+                    <a href="<?php echo $home_url; ?>admin/category/question.php"><span class="glyphicon glyphicon-question-sign"> Câu hỏi</a>
                 </li>
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Danh muc <span class="caret"></span></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list"></span> Danh mục <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                   <li><a href="#">Thi sinh</a></li>
-                   <li><a href="#">Phong thi</a></li>
-                   <li><a href="#">Do kho cau hoi </a></li>
+                   <li><a href="#">Thí sinh</a></li>
+                   <li><a href="#">Phòng thi</a></li>
+                   <li><a href="#">Độ khó câu hỏi </a></li>
                   </ul>
                 </li>
             </ul>
