@@ -32,7 +32,7 @@
                 </li>
                 <li <?php
                         echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/category/question.php"><span class="glyphicon glyphicon-question-sign"> Câu hỏi</a>
+                    <a href="<?php echo $home_url; ?>admin/category/question.php"><span class="glyphicon glyphicon-question-sign">  Câu hỏi</a>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list"></span> Danh mục <span class="caret"></span></a>
                   <ul class="dropdown-menu">
