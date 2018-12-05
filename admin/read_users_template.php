@@ -59,7 +59,7 @@
 
             </div>
         </div>
-        <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editUser()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash"></i>Sửa</button>
+        <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editUser()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa</button>
     <div>
 
     <div class="alert alert-success alert-dismissible" ng-if="result==1">
@@ -73,6 +73,7 @@
     </div>
 
     <table bs-table-control="bsTableControl"></table>
+    <script src="user.js"></script>
     </div>
   
 <?php
