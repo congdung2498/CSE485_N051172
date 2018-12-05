@@ -9,7 +9,7 @@ app.controller("userCtrl", function($scope,$http) {
     }
     
     $scope.getUsers=function(){
-        $http.get("http://localhost/test-app/admin/controlPhp/userControl.php?method=load_users").then(function (response) {
+        $http.get("http://localhost/test-app/admin/controlPhp/user/userControl.php?method=load_users").then(function (response) {
         $scope.Users = response.data.records;
         $scope.bsTableControl.options.data =  $scope.Users;
         $scope.bsTableControl.options.totalRows = $scope.Users.length; 
@@ -22,7 +22,7 @@ app.controller("userCtrl", function($scope,$http) {
     $scope.saveUser =function(){
         var request = $http({
             method: "PUT",
-            url: "http://localhost/test-app/admin/controlPhp/updateUser.php?method=put_User",
+            url: "http://localhost/test-app/admin/controlPhp/user/updateUser.php?method=put_User",
             data: {
                 user: $scope.user,
             },
@@ -41,6 +41,7 @@ app.controller("userCtrl", function($scope,$http) {
             idField: 'id',
             sortable: true,
             striped: true,
+            search:true,
             maintainSelected: true,
             clickToSelect: true,
             showColumns: false,
