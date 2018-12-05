@@ -1,5 +1,4 @@
 <!-- navbar -->
-<link rel="stylesheet" href="nav.css">
 <div class="navbar navbar-default navbar-static-top" role="navigation">
     <div class="container-fluid">
  
@@ -22,20 +21,21 @@
  
                 <!-- highlight for order related pages -->
                 <li <?php echo $page_title=="Admin Index" ? "class='active'" : ""; ?>>
-                    <a href="<?php echo $home_url; ?>admin/index.php"><span class="glyphicon glyphicon-home"></span> Home</a>
+                    <a href="<?php echo $home_url; ?>admin/index.php"><span class="glyphicon glyphicon-home"></span> Trang chủ</a>
                 </li>
  
                 <!-- highlight for user related pages -->
                 <li <?php
                         echo $page_title=="Danh mục người dùng" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/read_users.php"><span class=""><span class="glyphicon glyphicon-user"></span> Users</a>
+                    <a href="<?php echo $home_url; ?>admin/read_users.php"><span class=""><span class="glyphicon glyphicon-user"></span> Tài khoản</a>
                 </li>
-                <li <?php
-                        echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/category/question.php"><span class="glyphicon glyphicon-question-sign">  Câu hỏi</a>
-                </li>
+               
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list"></span> Danh mục</a>
                   <ul class="dropdown-menu">
+                   <li <?php
+                        echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
+                    <a href="<?php echo $home_url; ?>admin/category/question.php">Câu hỏi</a>
+                   </li>
                    <li><a href="#">Thí sinh</a></li>
                    <li><a href="#">Phòng thi</a></li>
                    <li><a href="#">Độ khó câu hỏi </a></li>
