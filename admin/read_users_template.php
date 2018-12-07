@@ -49,6 +49,16 @@
                             </select>
 			    	    </div>
                     </div>
+                    <div class="row">
+			        	<div class="col-xs-12">
+					        <label class="bold">Trạng thái </label>
+				    	    <select class="form-control" ng-model="user.status">
+                                <option value='1'>Đang hoạt động</option>
+                                <option value='0'>Chưa hoạt động</option>
+                            </select>
+			    	    </div>
+                    </div>
+
 
                     </div>
                     <div class="modal-footer">
