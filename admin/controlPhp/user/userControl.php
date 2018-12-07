@@ -8,7 +8,7 @@ if($_GET['method'] == "load_users")
 	
 	$conn = new mysqli($details['server_host'], $details['mysql_name'],$details['mysql_password'], $details['mysql_database']);
 	mysqli_set_charset($conn,"UTF8");	
-	$result = $conn->query("SELECT ID_User,firstname,lastname,email,contact_number,address,access_level FROM users");
+	$result = $conn->query("SELECT ID_User,firstname,lastname,email,contact_number,address,access_level,status FROM users");
 	
 	$data=array();
 	while($rs = $result->fetch_array(MYSQLI_ASSOC)) {
@@ -19,7 +19,8 @@ if($_GET['method'] == "load_users")
        $row['email']=addslashes($rs["email"]);
        $row['contact_number']=addslashes($rs["contact_number"]);
        $row['access_level']=addslashes($rs["access_level"]);
-       $row['address']=addslashes($rs["address"]);
+	   $row['address']=addslashes($rs["address"]);
+	   $row['status']=addslashes($rs["status"]);
 	   $data[]=$row;
 		
 	}
