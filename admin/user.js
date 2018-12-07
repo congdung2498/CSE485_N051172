@@ -35,6 +35,15 @@ app.controller("userCtrl", function($scope,$http) {
                 $scope.result=response.data;
         });
     }
+    var isstatusFormatter = function (value,) {
+        if (value==1) {
+            return 'Đang hoạt động';
+        }
+        else {
+            return 'Chưa hoạt động';
+        
+        }
+    };
     $scope.bsTableControl = {
         options: {
             data: $scope.Users,
@@ -94,11 +103,19 @@ app.controller("userCtrl", function($scope,$http) {
                 title: 'Số điện thoại',
                 align: 'center',
                 valign: 'middle'
-            }, {
+            },{
                 field: 'access_level',
                 title: 'Phân quyền',
                 align: 'center',
                 valign: 'middle'
+            }
+            ,{
+                field: 'status',
+                title: 'Trạng thái',
+                align: 'center',
+                valign: 'middle',
+                sortable: true,
+                formatter:isstatusFormatter
             }]
         }
     };
