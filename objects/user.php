@@ -24,6 +24,29 @@ class User{
     public function __construct($db){
         $this->conn = $db;
     }
+    
+    public function getUsers(){
+    	$query = "SELECT ID_User,firstname,lastname,email,contact_number,address,access_level,status FROM users";
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+    	return $stmt;
+    }
+    public function updateUser($mail,$acc_lv,$stt){
+        $query1 = "UPDATE users set access_level='$acc_lv' where email= '$mail'";
+    	$stmt1 = $this->conn->prepare( $query1 );
+        $stmt1 ->execute();
+        $query2 = "UPDATE users set status='$stt' where email= '$mail'";
+    	$stmt2 = $this->conn->prepare( $query2 );
+    	$stmt2 ->execute();
+    	if ($stmt1 == TRUE && $stmt2==true) {
+            echo 1;
+        } else {
+            echo 0 ;
+        }
+
+    }
+
+
     // check if given email exist in the database
     public function emailExists(){
  
