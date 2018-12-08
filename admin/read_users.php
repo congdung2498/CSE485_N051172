@@ -34,7 +34,7 @@ echo "<div class='col-md-12'>";
     $page_url="read_users.php?";
  
     // include products table HTML template
-    include_once "read_users_template.php";
+    include_once "user/view/read_users_template.php";
  
 echo "</div>";
  
