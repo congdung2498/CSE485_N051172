@@ -34,7 +34,7 @@
                   <ul class="dropdown-menu">
                    <li <?php
                         echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/category/question.php">Câu hỏi</a>
+                    <a href="<?php echo $home_url; ?>admin/question/view/question.php">Câu hỏi</a>
                    </li>
                    <li><a href="#">Thí sinh</a></li>
                    <li><a href="#">Phòng thi</a></li>
