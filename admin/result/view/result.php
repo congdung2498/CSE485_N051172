@@ -25,8 +25,15 @@ include '../../layout_head.php';
     </div>
     <table bs-table-control="bsTableResultControl"></table>
     <script src="../controller/result.js"></script>
+<<<<<<< HEAD
 
 </div>
+=======
+</div>
+                    
+
+
+>>>>>>> 218ae9acef5477bbbdb5f915c19c3e2867a7b988
  
   
  <?php
