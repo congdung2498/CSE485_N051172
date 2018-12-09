@@ -35,6 +35,7 @@ include '../../layout_head.php';
                             <div class="panel-body">
                                  <div class="col-md-12">
                                      <a class="btn btn-success" ng-click="openAnswer()" data-toggle="modal" data-target="#myAnswer"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span> Thêm đáp án </a>
+                                     <a class="btn btn-danger" ng-click="deleteAnswer()" data-ng-disabled="!check1" > <span class="glyphicon glyphicon-trash"></span> Xóa </a>
                                 </div>
                                 <table bs-table-control="bsTableAnswerControl"></table>
                              </div>
