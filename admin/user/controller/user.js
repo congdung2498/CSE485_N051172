@@ -1,6 +1,5 @@
 var app = angular.module("testApp",  ['bsTable']);
-app.controller("userCtrl", function($scope,$http) {
-    $scope.hello="hêllo";
+app.controller("userCtrl", function($scope,$http,$timeout) {
     $scope.Users=[];
     $scope.check=false;
     $scope.result=null;
@@ -33,9 +32,13 @@ app.controller("userCtrl", function($scope,$http) {
             request.then(function (response) {
                 $scope.getUsers();
                 $scope.result=response.data;
+                $timeout($scope.autoHide, 5000);
         });
     }
-    var isstatusFormatter = function (value,) {
+    $scope.autoHide= function(){
+        $scope.result=null;
+    }
+    var isstatusFormatter = function (value) {
         if (value==1) {
             return 'Đang hoạt động';
         }
