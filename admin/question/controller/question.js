@@ -2,6 +2,7 @@ var app = angular.module("testApp",  ['bsTable']);
 app.controller("questionCtl", function($scope,$http) {
     $scope.Questions=[];
     $scope.check=false;
+    $scope.check1=false;
     $scope.question={};
     $scope.listAnswers=[];
     $scope.answer={};
@@ -42,10 +43,10 @@ app.controller("questionCtl", function($scope,$http) {
     $scope.getAnswerbyQsID =function(){
         
             var request = $http({
-                method: "GET",
-                url: "http://localhost:81/test-app/admin/controlPhp/question/getAnswersbyQsID.php?method=load_answers",
+                method: "POST",
+                url: "http://localhost/test-app/admin/question/controller/getAnswersbyQsID.php?method=load_answers",
                 data: {
-                    questionID: $scope.question.ID_Question,
+                    questionID: $scope.question.ID_Question
                 },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 });
@@ -55,7 +56,6 @@ app.controller("questionCtl", function($scope,$http) {
                     $scope.listAnswers = response.data.records;
                     $scope.bsTableAnswerControl.options.data = $scope.listAnswers;
                     $scope.bsTableAnswerControl.options.totalRows = $scope.listAnswers.length; 
-                    console.log(response.data);
             });
         
     
@@ -76,7 +76,21 @@ app.controller("questionCtl", function($scope,$http) {
         $scope.bsTableAnswerControl.options.totalRows = $scope.listAnswers.length; 
     }
     
-   
+    $scope.deleteAnswer=function(){
+        var r = confirm("Xác nhận xóa");
+        if (r == true) {
+            for(var i=0; i<$scope.listAnswers.length; i++){
+                if($scope.listAnswers[i].ContentAs==$scope.ct){
+                    $scope.listAnswers.splice(i,1);
+                    $scope.bsTableAnswerControl.options.data = $scope.listAnswers;
+                    $scope.bsTableAnswerControl.options.totalRows = $scope.listAnswers.length; 
+                }
+            }
+        } else {
+           
+        }
+
+    }
     $scope.bsTableQuestionControl = {
         options: {
             data: $scope.Questions,
@@ -148,15 +162,15 @@ app.controller("questionCtl", function($scope,$http) {
             pageList: [5, 10, 25, 50, 100],
             onCheck: function (row, $element) {
                 $scope.$apply(function () {
-                    $scope.check=true;
-                    $scope.question=row;
-                    console.log($scope.check);
+                    $scope.ct=row.ContentAs;
+                    $scope.check1=true;
+                    console.log( $scope.IDas);
                 });
             },
             onUncheck: function (row, $element) {
-                $scope.check=false;
-               $scope.question={};
-               console.log($scope.check);
+                $scope.check1=false;
+               $scope.ct=null;
+               console.log($scope.IDas);
             },
             columns: [{
                 field: 'state',
