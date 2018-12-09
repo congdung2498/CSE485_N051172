@@ -92,6 +92,7 @@ class Question
     	$stmt->execute();
     	return $stmt;
 	}
+
 	public function getIDQuestions(){
     	$query = "SELECT max(ID_Question) FROM question";
     	$stmt = $this->conn->prepare( $query );
@@ -99,11 +100,27 @@ class Question
 		$rs = $stmt->fetch(PDO::FETCH_NUM);
 		return $rs[0];
 	}
+
 	public function getAnswerbyQSId(){
 		$query = "SELECT * FROM answer WHERE ID_Question =".$this->ID_Question;
     	$stmt = $this->conn->prepare( $query );
     	$stmt->execute();
     	return $stmt;
+	}
+
+	public function deleleQuestion(){   
+		$query1 = "DELETE FROM answer WHERE ID_Question =".$this->ID_Question; // xoa danh sach cau tl tuong ung
+    	$stmt1 = $this->conn->prepare( $query1 );
+    	if($stmt1->execute()) $rs1=1;
+		else $rs1=0;
+
+		$query2 = "DELETE FROM question WHERE ID_Question =".$this->ID_Question; // xoa cau hoi
+    	$stmt2 = $this->conn->prepare( $query2 );
+    	if($stmt2->execute()) $rs2=1;
+		else $rs2=0;
+
+		if($rs1==1 && $rs2 ==1) echo 1;
+		else echo 0;
 	}
 
 }
