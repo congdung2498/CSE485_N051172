@@ -37,7 +37,7 @@
                     <a href="<?php echo $home_url; ?>admin/question/view/question.php">Câu hỏi</a>
                    </li>
                    <li><a href="#">Cấu hình đề thi</a></li>
-                   <li><a href="#">Kết quả thi</a></li>
+                   <li><a href="<?php echo $home_url; ?>admin/result/view/result.php">Kết quả thi</a></li>
                   </ul>
                 </li>
             </ul>
