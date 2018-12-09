@@ -36,9 +36,8 @@
                         echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
                     <a href="<?php echo $home_url; ?>admin/question/view/question.php">Câu hỏi</a>
                    </li>
-                   <li><a href="#">Thí sinh</a></li>
-                   <li><a href="#">Phòng thi</a></li>
-                   <li><a href="#">Độ khó câu hỏi </a></li>
+                   <li><a href="#">Cấu hình đề thi</a></li>
+                   <li><a href="#">Kết quả thi</a></li>
                   </ul>
                 </li>
             </ul>
