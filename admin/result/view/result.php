@@ -23,11 +23,13 @@ include '../../layout_head.php';
             </div>
     </div>
     </div>
+    <table bs-table-control="bsTableResultControl"></table>
+    <script src="../controller/result.js"></script>
 </div>
                     
 
 
- <table bs-table-control="bsTableResultControl"></table>
+ 
   
  <?php
 // include page footer HTML
