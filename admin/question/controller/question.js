@@ -1,8 +1,9 @@
 var app = angular.module("testApp",  ['bsTable']);
-app.controller("questionCtl", function($scope,$http) {
+app.controller("questionCtl", function($scope,$http,$timeout) {
     $scope.Questions=[];
     $scope.check=false;
     $scope.check1=false;
+    $scope.result=null;
     $scope.question={};
     $scope.listAnswers=[];
     $scope.answer={};
@@ -15,7 +16,13 @@ app.controller("questionCtl", function($scope,$http) {
     });
     }
     $scope.getQuestions();  
-
+    $scope.createQuestion=function(){
+        $scope.question={};
+        $scope.listAnswers=[];
+        $scope.answer={};
+        $scope.bsTableAnswerControl.options.data = $scope.listAnswers;
+        $scope.bsTableAnswerControl.options.totalRows = $scope.listAnswers.length; 
+    }
     $scope.saveQuestion =function(){
         var request = $http({
             method: "POST",
@@ -29,15 +36,20 @@ app.controller("questionCtl", function($scope,$http) {
         
         /* Check whether the HTTP Request is successful or not. */
             request.then(function (response) {
-                $scope.result1=response.data.records;
+                $scope.result=response.data;
                 $scope.getQuestions();
                 $scope.question={};
                 $scope.listAnswers=[];
+                $timeout($scope.autoHide, 5000);
                 
         });
     }
     $scope.editQuestion=function(){
         $scope.getAnswerbyQsID();
+    }
+
+    $scope.autoHide= function(){
+        $scope.result=null;
     }
 
     $scope.getAnswerbyQsID =function(){
@@ -75,7 +87,34 @@ app.controller("questionCtl", function($scope,$http) {
         $scope.bsTableAnswerControl.options.data = $scope.listAnswers;
         $scope.bsTableAnswerControl.options.totalRows = $scope.listAnswers.length; 
     }
-    
+
+    $scope.confirmDeleteQuestion=function(){
+        var r = confirm("Xác nhận xóa");
+        if (r == true) {
+           $scope.deleteQuestion();
+        } else {
+           
+        }
+    }
+    $scope.deleteQuestion= function(){
+        var request = $http({
+            method: "POST",
+            url: "http://localhost/test-app/admin/question/controller/deleteQuestion.php?method=del_question",
+            data: {
+                questionID: $scope.question.ID_Question
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        
+        /* Check whether the HTTP Request is successful or not. */
+            request.then(function (response) {
+                $scope.result=response.data;
+                $scope.getQuestions();
+                $scope.question={};
+                $scope.listAnswers=[];
+                $timeout($scope.autoHide, 5000);
+        });
+    }
     $scope.deleteAnswer=function(){
         var r = confirm("Xác nhận xóa");
         if (r == true) {
@@ -89,7 +128,6 @@ app.controller("questionCtl", function($scope,$http) {
         } else {
            
         }
-
     }
     $scope.bsTableQuestionControl = {
         options: {
@@ -151,12 +189,11 @@ app.controller("questionCtl", function($scope,$http) {
             idField: 'id',
             sortable: true,
             striped: true,
-            search: true,
             maintainSelected: true,
             clickToSelect: true,
             showColumns: false,
             singleSelect: true,
-            showToggle: true,
+            showToggle: false,
             pagination: true,
             pageSize: 10,
             pageList: [5, 10, 25, 50, 100],
@@ -164,13 +201,11 @@ app.controller("questionCtl", function($scope,$http) {
                 $scope.$apply(function () {
                     $scope.ct=row.ContentAs;
                     $scope.check1=true;
-                    console.log( $scope.IDas);
                 });
             },
             onUncheck: function (row, $element) {
                 $scope.check1=false;
                $scope.ct=null;
-               console.log($scope.IDas);
             },
             columns: [{
                 field: 'state',
