@@ -32,12 +32,23 @@
                
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-list"></span> Danh mục</a>
                   <ul class="dropdown-menu">
-                   <li <?php
-                        echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
+
+                    <li <?php echo $page_title=="Danh mục môn học" ? "class='active'" : ""; ?> >
+                    <a href="<?php echo $home_url; ?>admin/subject/view/subject.php">Môn học</a>
+                   </li>
+
+                   <li <?php echo $page_title=="Danh mục câu hỏi" ? "class='active'" : ""; ?> >
                     <a href="<?php echo $home_url; ?>admin/question/view/question.php">Câu hỏi</a>
                    </li>
-                   <li><a href="#">Cấu hình đề thi</a></li>
-                   <li><a href="<?php echo $home_url; ?>admin/result/view/result.php">Kết quả thi</a></li>
+                    
+                   <li <?php echo $page_title=="Danh mục cấu hình đề thi" ? "class='active'" : ""; ?> >
+                    <a href="<?php echo $home_url; ?>admin/exam/view/exam.php">Cấu hình đề thi</a>
+                   </li>    
+
+                   <li <?php echo $page_title=="Danh mục kết quả thi" ? "class='active'" : ""; ?> >
+                    <a href="<?php echo $home_url; ?>admin/result/view/result.php">Kết quả thi</a>
+                   </li>                  
+                   
                   </ul>
                 </li>
             </ul>
