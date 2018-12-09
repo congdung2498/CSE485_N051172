@@ -31,18 +31,44 @@ class User{
     	$stmt->execute();
     	return $stmt;
     }
-    public function updateUser($mail,$acc_lv,$stt){
-        $query1 = "UPDATE users set access_level='$acc_lv' where email= '$mail'";
-    	$stmt1 = $this->conn->prepare( $query1 );
-        $stmt1 ->execute();
-        $query2 = "UPDATE users set status='$stt' where email= '$mail'";
-    	$stmt2 = $this->conn->prepare( $query2 );
-    	$stmt2 ->execute();
-    	if ($stmt1 == TRUE && $stmt2==true) {
-            echo 1;
-        } else {
-            echo 0 ;
-        }
+    public function updateUser(){
+        // $query1 = "UPDATE users set access_level='$acc_lv' where email= '$mail'";
+    	// $stmt1 = $this->conn->prepare( $query1 );
+        // $stmt1 ->execute();
+        // $query2 = "UPDATE users set status='$stt' where email= '$mail'";
+    	// $stmt2 = $this->conn->prepare( $query2 );
+    	// $stmt2 ->execute();
+    	// if ($stmt1 == TRUE && $stmt2==true) {
+        //     echo 1;
+        // } else {
+        //     echo 0 ;
+        // }
+        $query = "UPDATE  ".$this->table_name." SET access_level = :access_level,status = :status where email = :email";
+		// echo $query;
+		$stmt = $this->conn->prepare($query);
+
+        $this->firstname=htmlspecialchars(strip_tags($this->firstname));
+        $this->lastname=htmlspecialchars(strip_tags($this->lastname));
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->contact_number=htmlspecialchars(strip_tags($this->contact_number));
+        $this->address=htmlspecialchars(strip_tags($this->address));
+        $this->password=htmlspecialchars(strip_tags($this->password));
+        $this->access_level=htmlspecialchars(strip_tags($this->access_level));
+        $this->access_code=htmlspecialchars(strip_tags($this->access_code));
+        $this->status=htmlspecialchars(strip_tags($this->status));
+
+
+		$stmt->bindParam(':access_level',$this->access_level);
+        $stmt->bindParam(':status', $this->status);
+        $stmt->bindParam(':email', $this->email);
+
+
+		if ($stmt->execute()) {
+			echo 1;
+		}else{
+			$this->showError($stmt);
+			echo 0;
+		}
 
     }
 
