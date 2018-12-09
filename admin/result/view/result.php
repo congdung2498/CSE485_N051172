@@ -24,11 +24,9 @@ include '../../layout_head.php';
     </div>
     </div>
 </div>
-                    
-
-
+   <div>                 
  <table bs-table-control="bsTableResultControl"></table>
-  
+  </div>
  <?php
 // include page footer HTML
 include_once '../../layout_foot.php';
