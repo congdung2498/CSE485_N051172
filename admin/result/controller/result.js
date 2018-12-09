@@ -17,7 +17,7 @@ app.controller("resultCtl", function($scope) {
     $scope.getResult();  */
     $scope.bsTableResultControl = {
         options: {
-            /*data: $scope.Result,
+            data: $scope.Result,
             idField: 'id',
             sortable: true,
             striped: true,
@@ -40,7 +40,7 @@ app.controller("resultCtl", function($scope) {
                 $scope.check=false;
                $scope.result={};
                console.log($scope.check);
-            },*/
+            },
             columns: [{
                 field: 'state',
                 checkbox: true
