@@ -33,7 +33,7 @@ include '../../layout_head.php';
                        <div class="panel panel-default" style="border: solid 1px #cddbd1;">
                          <div class="panel-heading text-center"> <b style="font-size:18px;"> Thông tin đáp án </b>  </div>
                             <div class="panel-body">
-                                 <div class="col-md-12">
+                                 <div class="col-md-12" style="margin-bottom:10px;">
                                      <a class="btn btn-success" ng-click="openAnswer()" data-toggle="modal" data-target="#myAnswer"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span> Thêm đáp án </a>
                                      <a class="btn btn-danger" ng-click="deleteAnswer()" data-ng-disabled="!check1" > <span class="glyphicon glyphicon-trash"></span> Xóa </a>
                                 </div>
@@ -91,6 +91,7 @@ include '../../layout_head.php';
         </div>
         <button class="btn btn-success margin-10" style="margin:10px;"data-ng-click="createQuestion()"data-toggle="modal" data-target="#myModal"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span></i> Thêm mới</button>
         <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editQuestion()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa</button>
+        <button class="btn btn-danger margin-10" style="margin:10px;"data-ng-click="confirmDeleteQuestion()" data-ng-disabled="!check"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
     <div>
 
 
