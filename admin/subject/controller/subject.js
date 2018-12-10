@@ -1,23 +1,73 @@
 var app = angular.module("testApp",  ['bsTable']);
-app.controller("subjectCtl", function($scope) {
-    /*$scope.Result=[];
+app.controller("subjectCtl", function($scope,$http,$timeout) {
+    $scope.Subjects=[];
     $scope.check=false;
-    $scope.check1=false;
     $scope.result=null;
-    $scope.result={};
+    $scope.subject={};
 
-    $scope.getResult=function(){
-        $http.get("http://localhost/test-app/admin/result/controller/getResult.php?method=load_result").then(function (response) {
+    $scope.getSubjects=function(){
+        $http.get("http://localhost/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
             console.log(response);
-        $scope.Result = response.data.records;
-        $scope.bsTableResultControl.options.data = $scope.Result;
-        $scope.bsTableResultControl.options.totalRows = $scope.Result.length; 
+        $scope.Subjects = response.data.records;
+        $scope.bsTableSubjectControl.options.data = $scope.Subjects;
+        $scope.bsTableSubjectControl.options.totalRows = $scope.Subjects.length; 
     });
     }
-    $scope.getResult();  */
+    $scope.getSubjects();  
+    $scope.createSubject= function(){
+        $scope.subject={};
+    }
+    $scope.saveSubject=function(){
+        var request = $http({
+            method: "POST",
+            url: "http://localhost/test-app/admin/subject/controller/postSubject.php?method=post_question",
+            data: {
+                subject: $scope.subject
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        
+        /* Check whether the HTTP Request is successful or not. */
+            request.then(function (response) {
+                $scope.result=response.data;
+                $scope.getSubjects();
+                $scope.subject={};
+                $timeout($scope.autoHide, 5000);
+                
+        });
+    }
+    $scope.confirmDeleteSubject=function(){
+        var r = confirm("Xác nhận xóa");
+        if (r == true) {
+           $scope.deleteSubject();
+        } else {
+           
+        }
+    }
+    $scope.deleteSubject= function(){
+        var request = $http({
+            method: "POST",
+            url: "http://localhost/test-app/admin/subject/controller/deleteSubject.php?method=del_subject",
+            data: {
+                subjectID: $scope.subject.ID_Subject
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        
+        /* Check whether the HTTP Request is successful or not. */
+            request.then(function (response) {
+                $scope.result=response.data;
+                $scope.getSubjects();
+                $scope.subject={};
+                $timeout($scope.autoHide, 5000);
+        });
+    }
+    $scope.autoHide= function(){
+        $scope.result=null;
+    }
     $scope.bsTableSubjectControl = {
         options: {
-            data: $scope.Subject,
+            data: $scope.Subjects,
             idField: 'id',
             sortable: true,
             striped: true,
@@ -39,7 +89,6 @@ app.controller("subjectCtl", function($scope) {
             onUncheck: function (row, $element) {
                 $scope.check=false;
                $scope.subject={};
-               console.log($scope.check);
             },
             columns: [{
                 field: 'state',
