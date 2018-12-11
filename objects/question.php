@@ -11,6 +11,7 @@ class Question
 	public $ID_Question;
 	public $ContentQs;
 	public $ListAnswer;
+	public $ID_Subject;
 	public function __construct($db)
 	{
 		$this->conn = $db;
@@ -21,10 +22,11 @@ class Question
 		if(!isset($this->ID_Question)){  //them moi
 			$query = "INSERT INTO ".$this->table_name."
 		SET
-		ContentQs = :ContentQs";
+		ContentQs = :ContentQs, ID_Subject = :ID_Subject";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(':ContentQs', $this->ContentQs);
+		$stmt->bindParam(':ID_Subject', $this->ID_Subject);
 		if($stmt->execute()) $rs1=1;
 		else $rs1=0;
 		$IdQS=$this->getIDQuestions(); // lay iD cau hoi
@@ -49,9 +51,10 @@ class Question
 		}
 
 		else{ //sua
-			$query = "UPDATE ".$this->table_name." SET ContentQs = :ContentQs WHERE ID_Question = ".$this->ID_Question;
+			$query = "UPDATE ".$this->table_name." SET ContentQs = :ContentQs,  ID_Subject = :ID_Subject WHERE ID_Question = ".$this->ID_Question;
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':ContentQs', $this->ContentQs);
+			$stmt->bindParam(':ID_Subject', $this->ID_Subject);
 			if($stmt->execute()) $rs1=1;
 			else $rs1=0;     // sua noi dung cau hoi
 
@@ -87,9 +90,9 @@ class Question
     }
 
     public function getQuestions(){
-    	$query = "SELECT ID_Question , ContentQs FROM question ";
+    	$query = "SELECT ID_Question , ContentQs, subjectName FROM question a , subject b Where a.ID_Subject = b.ID_Subject";
     	$stmt = $this->conn->prepare( $query );
-    	$stmt->execute();
+		$stmt->execute();
     	return $stmt;
 	}
 
