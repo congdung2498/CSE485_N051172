@@ -9,8 +9,8 @@ class Result
 	private $table_name = "result";
 
 	public $ID_Result;
-    public $ID_Exam;
-    public $ID_User;
+    public $firstname;
+    public $Name;
     public $Score;
 	public function __construct($db)
 	{
@@ -56,7 +56,9 @@ class Result
 	}
 
     public function getResults(){
-    	$query = "SELECT ID_Result , ID_User, ID_Exam, Score FROM result ";
+    	$query = "SELECT ID_Result , users.firstname, exam.Name, Score FROM ((result
+		INNER JOIN users ON result.ID_User = users.ID_User)
+		INNER JOIN exam ON result.ID_Exam = exam.ID_Exam)";
     	$stmt = $this->conn->prepare( $query );
     	$stmt->execute();
     	return $stmt;
