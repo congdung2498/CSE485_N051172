@@ -47,20 +47,20 @@ app.controller("resultCtl", function($scope,$http) {
             },
              {
                 field: 'ID_Result',
-                title: 'ID Result',
+                title: 'ID kết quả',
                 align: 'center',
                 valign: 'bottom',
                 sortable: true
             }, {
-                field: 'ID_User',
-                title: 'ID User',
+                field: 'firstname',
+                title: 'Tên người dùng',
                 align: 'center',
                 valign: 'bottom',
                 sortable: true
             }
             , {
-                field: 'ID_Exam',
-                title: 'ID Exam',
+                field: 'Name',
+                title: 'Tên bài kiểm tra',
                 align: 'center',
                 valign: 'bottom',
                 sortable: true
