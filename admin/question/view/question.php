@@ -24,7 +24,10 @@ include '../../layout_head.php';
                      <div class="panel panel-default" style="border: solid 1px #cddbd1;">
                          <div class="panel-heading text-center"> <b style="font-size:18px;"> Thông tin câu hỏi </b>  </div>
                          <div class="panel-body">
-
+                         <div class="col-xs-12">
+                             <label class="bold" > Môn học </label>
+                             <select class="form-control" data-ng-model="question.subject"  ng-options="sj.subjectName for sj in Subjects"></select>
+                             </div>
                          <label class="col-xs-12">Nội dung</label>
                          <textarea class="col-xs-11" style="margin:15px; margin-left:15px;" class="form-control ng-pristine ng-valid ng-empty ng-touched" ng-model="question.ContentQs" rows="3" style="resize: vertical; overflow-x: hidden"></textarea>
                          </div>
@@ -69,7 +72,7 @@ include '../../layout_head.php';
                      <div class="panel panel-default" style="border: solid 1px #cddbd1;">
                          <div class="panel-heading text-center"> <b style="font-size:18px;"> Thông tin đáp án </b>  </div>
                          <div class="panel-body">
-
+                                                
                          <label class="col-xs-12">Nội dung</label>
                          <textarea class="col-xs-11" style="margin:15px; margin-left:15px;" class="form-control ng-pristine ng-valid ng-empty ng-touched" ng-model="answer.ContentAs" rows="3" style="resize: vertical; overflow-x: hidden"></textarea>
                          <label class="checkbox-inline col-xs-12"><input type="checkbox" ng-model="answer.Iscorrect">Là đáp án đúng</label>
