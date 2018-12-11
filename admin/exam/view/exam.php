@@ -17,24 +17,32 @@ include '../../layout_head.php';
                 <div class="modal-content">
                     <div class="modal-header" id="mydivheader">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"> <b>Quản lý môn học</b> </h4>
+                        <h4 class="modal-title"> <b>Cấu hình đề thi</b> </h4>
                     </div>
                     <div class="modal-body">
 
                      <div class="panel panel-default" style="border: solid 1px #cddbd1;">
-                         <div class="panel-heading text-center"> <b style="font-size:18px;"> Thông tin môn học</b>  </div>
+                         <div class="panel-heading text-center"> <b style="font-size:18px;"> Thông tin đề thi</b>  </div>
                          <div class="panel-body">
 
-                         <label class="col-xs-12">Tên đề thi</label>
-                         <input type="text" class="form-control" ng-model="exam.Name" />
+                         <div class="col-xs-12">
+                             <label class="bold" > Môn học </label>
+                             <select class="form-control" data-ng-model="exam.subject"  ng-options="sj.subjectName for sj in Subjects"></select>
+                         </div>
+
+                             <div class="col-xs-12">
+                                    <label class="bold">Tên đề thi</label>
+                                    <input type="text" class="form-control" ng-model="exam.Name" />        
+                             </div>
+                        
                          
-                        <div class="col-xs-6" style= "padding-left:0">
-                            <label class="col-xs-12">Số lượng câu hỏi</label>
+                        <div class="col-xs-6">
+                            <label class="bold">Số lượng câu hỏi</label>
                             <input type="number" class="form-control" ng-model="exam.Num_Question"  />
                         </div>
 
-                        <div class="col-xs-6" style= "padding-right:0">
-                            <label class="col-xs-12">Thời gian làm bài</label>
+                        <div class="col-xs-6" >
+                            <label class="bold">Thời gian làm bài</label>
                             <input type="number" class="form-control" ng-model="exam.Totaltime" />
                         </div>
 
@@ -45,7 +53,7 @@ include '../../layout_head.php';
                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" ng-click="saveSubject()" class="btn btn-primary" data-dismiss="modal">Lưu</button>
+                        <button type="button" ng-click="saveExam()" class="btn btn-primary" data-dismiss="modal">Lưu</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -64,9 +72,9 @@ include '../../layout_head.php';
     <strong>Lỗi!</strong> Có lỗi xảy ra trong quá trình cập nhật.
     </div>
 
-        <button class="btn btn-success margin-10" style="margin:10px;"data-ng-click="createSubject()"data-toggle="modal" data-target="#myModal"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span></i> Thêm mới</button>
-        <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editSubject()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa</button>
-        <button class="btn btn-danger margin-10" style="margin:10px;"data-ng-click="confirmDeleteSubject()" data-ng-disabled="!check"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
+        <button class="btn btn-success margin-10" style="margin:10px;"data-ng-click="createExam()"data-toggle="modal" data-target="#myModal"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span></i> Thêm mới</button>
+        <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editExam()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa</button>
+        <button class="btn btn-danger margin-10" style="margin:10px;"data-ng-click="confirmDeleteExam()" data-ng-disabled="!check"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
     <table bs-table-control="bsTableExamControl"></table>
     <script src="../controller/exam.js"></script>
 

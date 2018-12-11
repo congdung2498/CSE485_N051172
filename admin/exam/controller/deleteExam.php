@@ -1,16 +1,16 @@
 <?php
 
 	include_once "../../../config/database.php";
-	include_once '../../../objects/subject.php';
+	include_once '../../../objects/exam.php';
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
-	$ID = $request->subjectID;
+	$ID = $request->examID;
 
 	$database = new Database();
 	$db = $database->getConnection();
-	$subject = new Subject($db);
+	$exam = new Exam($db);
 
-	$subject->ID_Subject = $ID;
-	$stmt = $subject->deleleSubject();
+	$exam->ID_Exam = $ID;
+	$stmt = $exam->deleleExam();
     echo $stmt;
 ?>

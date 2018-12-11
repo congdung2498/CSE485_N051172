@@ -22,7 +22,7 @@ class Exam
 
 		if(!isset($this->ID_Exam)){  //them moi
 			$query = "INSERT INTO ".$this->table_name."
-		SET Name = :Name, Num_Question = :Num_Question, Totaltime = :Totaltime, ID_Subject = ID_Subject";
+		SET Name = :Name, Num_Question = :Num_Question, Totaltime = :Totaltime, ID_Subject = :ID_Subject";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(':Name', $this->Name);
@@ -41,9 +41,12 @@ class Exam
 		}
 
 		else{ //sua
-			$query = "UPDATE ".$this->table_name." SET Name = :Name WHERE ID_exam = ".$this->ID_Exam;
+			$query = "UPDATE ".$this->table_name." SET Name = :Name, Num_Question = :Num_Question, Totaltime = :Totaltime, ID_Subject = :ID_Subject WHERE ID_exam = ".$this->ID_Exam;
 			$stmt = $this->conn->prepare($query);
 			$stmt->bindParam(':Name', $this->Name);
+			$stmt->bindParam(':Num_Question', $this->Num_Question);
+			$stmt->bindParam(':Totaltime', $this->Totaltime);
+			$stmt->bindParam(':ID_Subject', $this->ID_Subject);
 			if($stmt->execute()) $rs=1;
 			else $rs=0;     // sua noi dung cau hoi
 
@@ -57,7 +60,7 @@ class Exam
 	}
 
     public function getExams(){
-    	$query = "SELECT ID_Exam , Name, Num_Question, Totaltime,ID_Subject FROM exam ";
+    	$query = "SELECT ID_Exam , Name, Num_Question, Totaltime,subjectName FROM exam a, subject b where a.ID_Subject= b.ID_Subject ";
     	$stmt = $this->conn->prepare( $query );
     	$stmt->execute();
     	return $stmt;

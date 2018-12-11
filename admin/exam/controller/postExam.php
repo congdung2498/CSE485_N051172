@@ -1,27 +1,31 @@
 <?php
 
 	include_once "../../../config/database.php";
-	include_once '../../../objects/subject.php';
+	include_once '../../../objects/exam.php';
     
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
-	$subjectName = $request->subject->subjectName;
-	if(isset($request->subject->ID_Subject)){
-		$ID = $request->subject->ID_Subject;
+	if(isset($request->exam->ID_Exam)){
+		$ID = $request->exam->ID_Exam;
 	}
 
 	$database = new Database();
 	$db = $database->getConnection();
-	$subject = new Subject($db);
+	$exam = new Exam($db);
 
-	$subject->subjectName = $subjectName ;
+	$exam->ID_Subject=(int)$request->exam->subject->ID_Subject;
+	$exam->Name=$request->exam->Name;
+	$exam->Num_Question=$request->exam->Num_Question;
+	$exam->Totaltime=$request->exam->Totaltime;
 	if(isset($ID)){
-		$subject->ID_Subject = $ID;
+		$exam->ID_Exam = $ID;
 	}
 	
-	$stmt = $subject->createSubject();
+	$stmt = $exam->createExam();
 	echo $stmt;
-	
+	// $jsonData=array();
+	// $jsonData['records']=$exam;
+	// echo json_encode($jsonData);
 
  
  
