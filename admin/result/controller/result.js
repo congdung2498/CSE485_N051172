@@ -1,20 +1,20 @@
 var app = angular.module("testApp",  ['bsTable']);
-app.controller("resultCtl", function($scope) {
-    /*$scope.Result=[];
+app.controller("resultCtl", function($scope,$http) {
+    $scope.Results=[];
     $scope.check=false;
-    $scope.check1=false;
     $scope.result=null;
     $scope.result={};
 
-    $scope.getResult=function(){
-        $http.get("http://localhost/test-app/admin/result/controller/getResult.php?method=load_result").then(function (response) {
+    $scope.getResults=function(){
+        $http.get("http://localhost/test-app/admin/result/controller/getResult.php?method=load_Results").then(function (response) {
             console.log(response);
-        $scope.Result = response.data.records;
-        $scope.bsTableResultControl.options.data = $scope.Result;
-        $scope.bsTableResultControl.options.totalRows = $scope.Result.length; 
+        $scope.Results = response.data.records;
+        $scope.bsTableResultControl.options.data = $scope.Results;
+        $scope.bsTableResultControl.options.totalRows = $scope.Results.length; 
     });
     }
-    $scope.getResult();  */
+    $scope.getResults();  
+    
     $scope.bsTableResultControl = {
         options: {
             data: $scope.Result,
