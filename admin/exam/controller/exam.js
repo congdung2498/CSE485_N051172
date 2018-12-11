@@ -62,6 +62,13 @@ app.controller("examCtl", function($scope,$http,$timeout) {
                 $timeout($scope.autoHide, 5000);
         });
     }
+    $scope.getSubjects=function(){
+        $http.get("http://localhost/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+            console.log(response);
+        $scope.Subjects = response.data.records;
+    });
+    }
+    $scope.getSubjects();
     $scope.autoHide= function(){
         $scope.result=null;
     }
@@ -84,6 +91,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
                 $scope.$apply(function () {
                     $scope.check=true;
                     $scope.exam=row;
+                    console.log($scope.exam);
                 });
             },
             onUncheck: function (row, $element) {
@@ -121,7 +129,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
                 valign: 'bottom',
                 sortable: true
             },{
-                field: 'ID_Subject',
+                field: 'subjectName',
                 title: 'Môn học',
                 align: 'center',
                 valign: 'bottom',
