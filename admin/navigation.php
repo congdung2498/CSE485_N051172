@@ -25,8 +25,7 @@
                 </li>
  
                 <!-- highlight for user related pages -->
-                <li <?php
-                        echo $page_title=="Danh mục người dùng" ? "class='active'" : ""; ?> >
+                <li <?php echo $page_title=="Danh mục người dùng" ? "class='active'" : ""; ?> >
                     <a href="<?php echo $home_url; ?>admin/read_users.php"><span class=""><span class="glyphicon glyphicon-user"></span> Tài khoản</a>
                 </li>
                
@@ -41,7 +40,7 @@
                     <a href="<?php echo $home_url; ?>admin/question/view/question.php">Câu hỏi</a>
                    </li>
                     
-                   <li <?php echo $page_title=="Danh mục cấu hình đề thi" ? "class='active'" : ""; ?> >
+                   <li <?php echo $page_title=="Cấu hình đề thi" ? "class='active'" : ""; ?> >
                     <a href="<?php echo $home_url; ?>admin/exam/view/exam.php">Cấu hình đề thi</a>
                    </li>    
 
