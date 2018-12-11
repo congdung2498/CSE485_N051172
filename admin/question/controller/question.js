@@ -72,6 +72,14 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
         
     
     }
+    
+    $scope.getSubjects=function(){
+        $http.get("http://localhost/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+            console.log(response);
+        $scope.Subjects = response.data.records;
+    });
+    }
+    $scope.getSubjects();
     $scope.openAnswer=function(){
         $scope.answer={};
     }
@@ -129,6 +137,11 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
            
         }
     }
+    $scope.getSubjects=function(){
+        $http.get("http://localhost/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+        $scope.Subjects = response.data.records;
+    });
+    }
     $scope.bsTableQuestionControl = {
         options: {
             data: $scope.Questions,
@@ -168,6 +181,12 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
             }, {
                 field: 'ContentQs',
                 title: 'Nội dung câu hỏi',
+                align: 'center',
+                valign: 'bottom',
+                sortable: true
+            }, {
+                field: 'subjectName',
+                title: 'Môn học',
                 align: 'center',
                 valign: 'bottom',
                 sortable: true
