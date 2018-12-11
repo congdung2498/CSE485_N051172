@@ -3,15 +3,13 @@ include_once "../../../config/database.php";
 include_once '../../../objects/result.php';
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-if($_GET['method'] == "load_result")
+if($_GET['method'] == "load_Results")
 {
 	
 	$database = new Database();
 	$db = $database->getConnection();
-
-	$question = new Result($db);
-
-	$stmt = $result->getResult();
+	$result = new Result($db);
+	$stmt = $result->getResults();
 	$data=array();
 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		   $row=array();
