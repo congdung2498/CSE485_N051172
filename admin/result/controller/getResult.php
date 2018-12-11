@@ -14,8 +14,8 @@ if($_GET['method'] == "load_Results")
 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		   $row=array();
 		   $row['ID_Result']=addslashes($rs["ID_Result"]);
-           $row['ID_User']=addslashes($rs["ID_User"]);
-           $row['ID_Exam']=addslashes($rs["ID_Exam"]);
+           $row['firstname']=addslashes($rs["firstname"]);
+           $row['Name']=addslashes($rs["Name"]);
            $row['Score']=addslashes($rs["Score"]);
 		   $data[]=$row;
 	}
