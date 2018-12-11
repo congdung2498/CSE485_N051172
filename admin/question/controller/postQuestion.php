@@ -6,6 +6,7 @@
 	$postdata = file_get_contents("php://input");
 	$request = json_decode($postdata);
 	$contentQs = $request->question->ContentQs;
+	$IdSubject = $request->question->subject->ID_Subject;
 	if(isset($request->question->ID_Question)){
 		$ID = $request->question->ID_Question;
 	}
@@ -17,6 +18,8 @@
 	$question = new Question($db);
 
 	$question->ContentQs = $contentQs;
+	$question->ID_Subject = $IdSubject;
+
 	if(isset($ID)){
 		$question->ID_Question = $ID;
 	}
