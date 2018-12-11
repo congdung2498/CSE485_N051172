@@ -15,11 +15,11 @@ if($_GET['method'] == "load_Exams")
 	$data=array();
 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		   $row=array();
-		   $row['ID_Exam']=addslashes($rs["ID_Exam"]);
+		   $row['ID_Exam']=(int)$rs["ID_Exam"];
 		   $row['Name']=addslashes($rs["Name"]);
-		   $row['Num_Question']=addslashes($rs["Num_Question"]);
-		   $row['Totaltime']=addslashes($rs["Totaltime"]);
-		   $row['ID_Subject']=addslashes($rs["ID_Subject"]);
+		   $row['Num_Question']=(int)$rs["Num_Question"];
+		   $row['Totaltime']=(int)$rs["Totaltime"];
+		   $row['subjectName']=$rs["subjectName"];
 		   $data[]=$row;
 	}
 	$jsonData=array();
