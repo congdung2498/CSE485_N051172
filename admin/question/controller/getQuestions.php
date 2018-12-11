@@ -17,6 +17,7 @@ if($_GET['method'] == "load_questions")
 		   $row=array();
 		   $row['ID_Question']=addslashes($rs["ID_Question"]);
 		   $row['ContentQs']=addslashes($rs["ContentQs"]);
+		   $row['subjectName']=addslashes($rs["subjectName"]);
 		   $data[]=$row;
 	}
 	$jsonData=array();
