@@ -8,6 +8,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
     $scope.exam={};
     $scope.exam.user=[];
     $scope.Users=[];
+    $scope.user={};
     $scope.selectedUser=[];
 
     $scope.getExams=function(){
@@ -85,6 +86,30 @@ app.controller("examCtl", function($scope,$http,$timeout) {
         $scope.bsTableUserControl.options.totalRows = $scope.Users.length; 
     });
     }
+
+    $scope.getUserbyExID =function(){
+        
+        var request = $http({
+            method: "POST",
+            url: "http://localhost/test-app/admin/exam/controller/getUserbyExamID.php?method=load_users",
+            data: {
+                examID: $scope.exam.ID_Exam
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        
+        /* Check whether the HTTP Request is successful or not. */
+            request.then(function (response) {
+                $scope.exam.user = response.data.records;
+                $scope.bsTableSelectedUserControl.options.data = $scope.exam.user;
+                $scope.bsTableSelectedUserControl.options.totalRows = $scope.exam.user.length; 
+        });
+    
+
+}
+    $scope.editExam=function(){
+        $scope.getUserbyExID();
+    }
     $scope.getUsers();  
     $scope.getSubjects();
     $scope.openUser=function(){
@@ -111,6 +136,16 @@ app.controller("examCtl", function($scope,$http,$timeout) {
           $scope.bsTableSelectedUserControl.options.data=$scope.exam.user;
           $scope.bsTableSelectedUserControl.options.totalRows=$scope.exam.user.length;
           $scope.selectedUser=[];
+    }
+    $scope.deleteUser=function(){
+        for(var i=0; i<$scope.exam.user.length;i++)
+        {
+            if($scope.user.ID_User==$scope.exam.user[i].ID_User){
+                $scope.exam.user.splice(i,1)
+            } 
+        }
+        $scope.bsTableSelectedUserControl.options.data=$scope.exam.user;
+        $scope.bsTableSelectedUserControl.options.totalRows=$scope.exam.user.length;
     }
     $scope.autoHide= function(){
         $scope.result=null;
