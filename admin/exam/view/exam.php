@@ -52,7 +52,7 @@ include '../../layout_head.php';
                             <div class="panel-body">
                                  <div class="col-md-12" style="margin-bottom:10px;">
                                      <a class="btn btn-success" ng-click="openUser()" data-toggle="modal" data-target="#myUser"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span> Thêm thí sinh </a>
-                                     <a class="btn btn-danger" ng-click="deleteAnswerUser()" data-ng-disabled="!check2" > <span class="glyphicon glyphicon-trash"></span> Xóa </a>
+                                     <a class="btn btn-danger" ng-click="deleteUser()" data-ng-disabled="!check2" > <span class="glyphicon glyphicon-trash"></span> Xóa </a>
                                 </div>
                                 <table bs-table-control="bsTableSelectedUserControl"></table>
                              </div>
