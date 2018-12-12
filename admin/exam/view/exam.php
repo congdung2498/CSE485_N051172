@@ -45,12 +45,19 @@ include '../../layout_head.php';
                             <label class="bold">Thời gian làm bài</label>
                             <input type="number" class="form-control" ng-model="exam.Totaltime" />
                         </div>
-
                         
-                         </div>
-
-                         
+                     </div>
+                     <div class="panel panel-default" style="border: solid 1px #cddbd1;">
+                         <div class="panel-heading text-center"> <b style="font-size:18px;"> Thêm thí sinh </b>  </div>
+                            <div class="panel-body">
+                                 <div class="col-md-12" style="margin-bottom:10px;">
+                                     <a class="btn btn-success" ng-click="openUser()" data-toggle="modal" data-target="#myUser"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span> Thêm thí sinh </a>
+                                     <a class="btn btn-danger" ng-click="deleteAnswerUser()" data-ng-disabled="!check2" > <span class="glyphicon glyphicon-trash"></span> Xóa </a>
+                                </div>
+                                <table bs-table-control="bsTableSelectedUserControl"></table>
+                             </div>
                        </div>
+                </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" ng-click="saveExam()" class="btn btn-primary" data-dismiss="modal">Lưu</button>
@@ -61,6 +68,28 @@ include '../../layout_head.php';
             </div>
         </div>
     <div>
+
+    <!-- modal-user -->
+    <div id="myUser" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" id="mydivheader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> Thí Sinh</h4>
+                    </div>
+                    <div class="modal-body">
+                            <table bs-table-control="bsTableUserControl"></table>                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="addUser()" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     <div class="alert alert-success alert-dismissible" ng-if="result==1">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
