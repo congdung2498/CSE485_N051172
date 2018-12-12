@@ -10,8 +10,8 @@ if($_GET['method'] == "load_Exams")
 	$db = $database->getConnection();
 
 	$exam = new Exam($db);
-
 	$stmt = $exam->getExams();
+	
 	$data=array();
 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		   $row=array();
@@ -19,7 +19,7 @@ if($_GET['method'] == "load_Exams")
 		   $row['Name']=addslashes($rs["Name"]);
 		   $row['Num_Question']=(int)$rs["Num_Question"];
 		   $row['Totaltime']=(int)$rs["Totaltime"];
-		   $row['subjectName']=$rs["subjectName"];
+		   $row['subjectName']=addslashes($rs["subjectName"]);
 		   $data[]=$row;
 	}
 	$jsonData=array();
