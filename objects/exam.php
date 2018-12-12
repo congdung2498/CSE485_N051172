@@ -12,7 +12,8 @@ class Exam
     public $Name;
     public $Num_Question;
     public $Totaltime;
-    public $ID_Subject;
+	public $ID_Subject;
+	public $ListUser;
 	public function __construct($db)
 	{
 		$this->conn = $db;
@@ -31,8 +32,19 @@ class Exam
 		$stmt->bindParam(':ID_Subject', $this->ID_Subject);
 		if($stmt->execute()) $rs=1;
 		else $rs=0;
-					
-		if ($rs == 1) {
+		$IDExam=$this->getIDExam();
+			foreach( $this->ListUser as $us ) // tao cau tl
+			{
+			$query2="INSERT INTO exam_user SET ID_User = :ID_User, ID_Exam = :ID_Exam";
+			$stmt2 = $this->conn->prepare($query2);
+			
+			$stmt2->bindParam(':ID_User',$us->ID_User);
+			$stmt2->bindParam(':ID_Exam', $IDExam);
+			$rs2 = $stmt2->execute() ;
+			}	
+
+
+		if ($rs == 1 && $rs2==true) {
 			echo 1;
 		}else{
 			echo 0;
@@ -75,7 +87,13 @@ class Exam
 		if($rs1==1) echo 1;
 		else echo 0;
 	}
-
+	public function getIDExam(){
+    	$query = "SELECT max(ID_Exam) FROM exam";
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+		$rs = $stmt->fetch(PDO::FETCH_NUM);
+		return $rs[0];
+	}
 }
 
  ?>
