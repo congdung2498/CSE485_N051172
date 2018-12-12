@@ -17,6 +17,7 @@
 	$exam->Name=$request->exam->Name;
 	$exam->Num_Question=$request->exam->Num_Question;
 	$exam->Totaltime=$request->exam->Totaltime;
+	$exam->ListUser=$request->exam->user;
 	if(isset($ID)){
 		$exam->ID_Exam = $ID;
 	}
