@@ -3,11 +3,11 @@
 include_once "config/core.php";
  
 // set page title
-$page_title="Index";
+$page_title="Hệ thống thi trắc nghiệm trực tuyến";
  
 // include login checker
-$require_login=true;
-include_once "login_checker.php";
+// $require_login=true;
+// include_once "login_checker.php";
  
 // include page header HTML
 include_once 'layout_head.php';
@@ -31,13 +31,14 @@ echo "<div class='col-md-12'>";
         echo "</div>";
     }
  
-    // content once logged in
-    echo "<div class='alert alert-info'>";
-        echo "Content when logged in will be here. For example, your premium products or services.";
-    echo "</div>";
+  
  
 echo "</div>";
  
 // footer HTML and JavaScript codes
+
+
+include_once "user/dashboard/view/dashboard.php";
+
 include 'layout_foot.php';
 ?>
