@@ -151,3 +151,51 @@ div#blueimp-gallery div.modal{ overflow: visible; }
         color: white;
         background-color: #2050b7 ;
     }
+
+    .exam {
+        margin-bottom: 15px;
+        
+    }
+    .exam:hover{
+        transform: scale(1.05);
+        transition: all 400ms;
+        /* padding: 5px 2px 5px 2px; */
+    
+    }
+    .examName{
+        text-align:center;
+        font-weight:bold;
+        height: 34px;
+        line-height: 34px;
+        background-color: #0072bc;
+        display: block;
+        text-align: center;
+        color: white;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+    .exam a{
+        text-decoration: none;
+        color: aliceblue;
+
+    }
+    .examSubjectname{
+        font-weight:bold;
+        font-size: 14px;
+        height: 34px;
+        line-height: 34px;
+        color: #f58220;
+    }
+    .examTotaltime{
+        font-size: 14px;
+        height: 34px;
+        line-height: 34px;
+        color: black;
+    }
+    .examNumberQs{
+        font-size: 14px;
+        height: 34px;
+        line-height: 34px;
+        color: black;
+        border-bottom :1px solid burlywood; 
+    }
