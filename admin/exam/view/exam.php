@@ -34,7 +34,6 @@ include '../../layout_head.php';
                                     <label class="bold">Tên đề thi</label>
                                     <input type="text" class="form-control" ng-model="exam.Name" />        
                              </div>
-                        
                          
                         <div class="col-xs-6">
                             <label class="bold">Số lượng câu hỏi</label>
