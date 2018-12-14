@@ -24,7 +24,39 @@ class User{
     public function __construct($db){
         $this->conn = $db;
     }
-    
+    public function createUser(){
+        if(!isset($this->ID_User)){  //them moi
+			$query = "INSERT INTO ".$this->table_name."
+        SET firstname = :firstname, lastname = :lastname, email = :email, contact_number = :contact_number, 
+        address = :address, password = :password, access_level = :access_level, status= :status";
+		
+		$stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':firstname', $this->firstname);
+        $stmt->bindParam(':lastname', $this->lastname);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':contact_number', $this->contact_number);
+        $stmt->bindParam(':address', $this->address);
+        $stmt->bindParam(':status',$this->status);
+     
+        // hash the password before saving to database
+        $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+        $stmt->bindParam(':password', $password_hash);
+     
+        $stmt->bindParam(':access_level', $this->access_level);
+     
+        
+		if($stmt->execute()) $rs=1;
+		else $rs=0;
+
+
+		if ($rs == 1 ) {
+			echo 1;
+		}else{
+			echo 0;
+        }
+        
+		}
+    }
     public function getUsers(){
     	$query = "SELECT ID_User,firstname,lastname,email,contact_number,address,access_level,status FROM users";
     	$stmt = $this->conn->prepare( $query );
