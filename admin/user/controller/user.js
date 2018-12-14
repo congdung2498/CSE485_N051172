@@ -15,7 +15,34 @@ app.controller("userCtrl", function($scope,$http,$timeout) {
         console.log($scope.Users);
     });
     }
-    $scope.getUsers();  
+    $scope.getUsers(); 
+    $scope.opencreateUser= function(){
+        $scope.user={};
+    }
+
+    
+    $scope.createUser= function(){
+       
+        var request = $http({
+            method: "POST",
+            url: "http://localhost/test-app/admin/user/controller/postUser.php?method=post_user",
+            data: {
+                user: $scope.user
+            },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+        
+        /* Check whether the HTTP Request is successful or not. */
+            request.then(function (response) {
+                $scope.result=response.data;
+                $scope.getUsers();
+                $scope.user={};
+                $timeout($scope.autoHide, 5000);
+                
+        });
+
+    }
+
     $scope.editUser=function(){
     }
     $scope.saveUser =function(){
