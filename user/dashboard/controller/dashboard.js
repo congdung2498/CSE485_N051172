@@ -1,10 +1,15 @@
 var app = angular.module("testApp",  ['bsTable']);
-app.controller("dashboardCtl", function($scope,$http,$timeout) {
-    $scope.getExams=function(){
-        $http.get("http://localhost/test-app/user/dashboard/controller/getExam.php?method=load_Exams").then(function (response) {
-        $scope.Exams = response.data.records;
-        console.log($scope.Exams);
+// var id=1;
+app.controller("dashboardCtl", function($scope,$http,$timeout,$rootScope,$location) {
+    $scope.getExamConfigs=function(){
+        $http.get("http://localhost/test-app/user/dashboard/controller/getExamConfigs.php?method=load_ExamConfigs").then(function (response) {
+        $scope.Exam_Configs = response.data.records;
+        console.log($scope.Exam_Configs);
     });
     }
-    $scope.getExams();
+    $scope.getExamConfigs();
+
+    var absUrl = $location.absUrl();
+    console.log(absUrl);
 });
+
