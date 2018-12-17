@@ -41,7 +41,7 @@
                    </li>
                     
                    <li <?php echo $page_title=="Cấu hình đề thi" ? "class='active'" : ""; ?> >
-                    <a href="<?php echo $home_url; ?>admin/exam/view/exam.php">Cấu hình đề thi</a>
+                    <a href="<?php echo $home_url; ?>admin/exam_config/view/exam_config.php">Cấu hình đề thi</a>
                    </li>    
 
                    <li <?php echo $page_title=="Danh mục kết quả thi" ? "class='active'" : ""; ?> >
