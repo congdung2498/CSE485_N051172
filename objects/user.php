@@ -321,7 +321,17 @@ function accessCodeExists(){
  
     // return false if access_code does not exist in the database
     return false;
- 
+    
 }
+public function deleleUser(){   
+    $query1 = "DELETE FROM users WHERE ID_User=".$this->ID_User; 
+    $stmt1 = $this->conn->prepare( $query1 );
+    if($stmt1->execute()) $rs1=1;
+    else $rs1=0;
+
+    if($rs1==1) echo 1;
+    else echo 0;
+}
+
 
 }
