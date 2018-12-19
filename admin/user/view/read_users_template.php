@@ -149,6 +149,7 @@
         </div>
         <button class="btn btn-success margin-10" style="margin:10px;"data-ng-click="opencreateUser()"data-toggle="modal" data-target="#myModall"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle"></span></i> Thêm mới</button>
         <button class="btn btn-primary margin-10" style="margin:10px;"data-ng-click="editUser()" data-ng-disabled="!check" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Chỉnh sửa</button>
+        <button class="btn btn-danger margin-10" style="margin:10px;"data-ng-click="confirmDeleteUser()" data-ng-disabled="!check"><span class="glyphicon glyphicon-trash"></span> Xóa</button>
    <div>
 
     <div class="alert alert-success alert-dismissible" ng-if="result==1">
