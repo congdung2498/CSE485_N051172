@@ -6,7 +6,7 @@ app.controller("resultCtl", function($scope,$http) {
     $scope.result={};
 
     $scope.getResults=function(){
-        $http.get("http://localhost:81/test-app/admin/result/controller/getResult.php?method=load_Results").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/result/controller/getResult.php?method=load_Results").then(function (response) {
             console.log(response);
         $scope.Results = response.data.records;
         $scope.bsTableResultControl.options.data = $scope.Results;
