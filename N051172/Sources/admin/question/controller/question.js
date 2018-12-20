@@ -8,7 +8,7 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
     $scope.listAnswers=[];
     $scope.answer={};
     $scope.getQuestions=function(){
-        $http.get("http://localhost:81/test-app/admin/question/controller/getQuestions.php?method=load_questions").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/question/controller/getQuestions.php?method=load_questions").then(function (response) {
             console.log(response);
         $scope.Questions = response.data.records;
         $scope.bsTableQuestionControl.options.data = $scope.Questions;
@@ -26,7 +26,7 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
     $scope.saveQuestion =function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/question/controller/postQuestion.php?method=post_question",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/question/controller/postQuestion.php?method=post_question",
             data: {
                 question: $scope.question,
                 listanswer:$scope.listAnswers
@@ -56,7 +56,7 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
         
             var request = $http({
                 method: "POST",
-                url: "http://localhost:81/test-app/admin/question/controller/getAnswersbyQsID.php?method=load_answers",
+                url: "http://localhost/CSE485_N051172/N051172/Sources/admin/question/controller/getAnswersbyQsID.php?method=load_answers",
                 data: {
                     questionID: $scope.question.ID_Question
                 },
@@ -74,7 +74,7 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
     }
     
     $scope.getSubjects=function(){
-        $http.get("http://localhost:81/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
             console.log(response);
         $scope.Subjects = response.data.records;
     });
@@ -107,7 +107,7 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
     $scope.deleteQuestion= function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/question/controller/deleteQuestion.php?method=del_question",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/question/controller/deleteQuestion.php?method=del_question",
             data: {
                 questionID: $scope.question.ID_Question
             },
@@ -138,7 +138,7 @@ app.controller("questionCtl", function($scope,$http,$timeout) {
         }
     }
     $scope.getSubjects=function(){
-        $http.get("http://localhost:81/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
         $scope.Subjects = response.data.records;
     });
     }
