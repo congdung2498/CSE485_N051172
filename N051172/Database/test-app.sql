@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3306
--- Thời gian đã tạo: Th12 20, 2018 lúc 03:04 PM
+-- Thời gian đã tạo: Th12 20, 2018 lúc 04:11 PM
 -- Phiên bản máy phục vụ: 5.7.22-log
 -- Phiên bản PHP: 7.2.10
 
@@ -246,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `subject` (
   `ID_Subject` int(11) NOT NULL AUTO_INCREMENT,
   `subjectName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID_Subject`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `subject`
@@ -255,7 +255,8 @@ CREATE TABLE IF NOT EXISTS `subject` (
 INSERT INTO `subject` (`ID_Subject`, `subjectName`) VALUES
 (1, 'Công nghệ web'),
 (2, 'Cơ sở dữ liệu'),
-(4, 'Kiến trúc máy tính');
+(4, 'Kiến trúc máy tính'),
+(5, 'Mạng máy tính');
 
 -- --------------------------------------------------------
 
@@ -278,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created` datetime NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`ID_User`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='admin and customer users';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='admin and customer users';
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
@@ -293,9 +294,10 @@ INSERT INTO `users` (`ID_User`, `firstname`, `lastname`, `email`, `contact_numbe
 (10, 'Merlin', 'Duckerberg', 'merlin@gmail.com', '09991112333', 'Project 2, Quezon City', '$2y$10$VHY58eALB1QyYsP71RHD1ewmVxZZp.wLuhejyQrufvdy041arx1Kq', 'Admin', '', 1, '2015-03-18 06:45:28', '2018-12-08 16:31:33'),
 (14, 'Charlon', 'Ignacio', 'charlon@gmail.com', '09876543345', 'Tandang Sora, QC', '$2y$10$Fj6O1tPYI6UZRzJ9BNfFJuhURN9DnK5fQGHEsfol5LXRu.tCYYggu', 'Admin', '', 1, '2015-03-24 08:06:57', '2018-12-08 16:31:33'),
 (15, 'Kobe Bro', 'Bryant', 'kobe@gmail.com', '09898787674', 'Los Angeles, California', '$2y$10$fmanyjJxNfJ8O3p9jjUixu6EOHkGZrThtcd..TeNz2g.XZyCIuVpm', 'Admin', '', 1, '2015-03-26 11:28:01', '2018-12-08 16:31:33'),
-(20, 'Tim', 'Duncan', 'tim@example.com', '9999999', 'San Antonio, Texas, USA', '$2y$10$9OSKHLhiDdBkJTmd3VLnQeNPCtyH1IvZmcHrz4khBMHdxc8PLX5G6', 'Admin', '0X4JwsRmdif8UyyIHSOUjhZz9tva3Czj', 1, '2016-05-26 01:25:59', '2018-12-08 16:31:33'),
+(20, 'Tim', 'Duncan', 'tim@example.com', '9999999', 'San Antonio, Texas, USA', '$2y$10$9OSKHLhiDdBkJTmd3VLnQeNPCtyH1IvZmcHrz4khBMHdxc8PLX5G6', 'Customer', '0X4JwsRmdif8UyyIHSOUjhZz9tva3Czj', 1, '2016-05-26 01:25:59', '2018-12-20 15:50:44'),
 (21, 'Tony', 'Parker', 'tony@example.com', '8888888', 'Blk 24 A Lot 6 Ph 3\r\nPeace Village, San Luis', '$2y$10$lBJfvLyl/X5PieaztTYADOxOQeZJCqETayF.O9ld17z3hcKSJwZae', 'Admin', 'THM3xkZzXeza5ISoTyPKl6oLpVa88tYl', 1, '2016-05-26 01:29:01', '2018-12-08 16:31:33'),
-(29, 'Lê Công', 'Dũng', 'congdung2498@gmail.com', '01627317786', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Admin', 'NgXfDBtIftJfqzk751IqnsqiLiW1CTBo', 1, '2018-12-04 23:29:41', '2018-12-08 16:31:33');
+(29, 'Lê Công', 'Dũng', 'congdung2498@gmail.com', '01627317786', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Admin', 'NgXfDBtIftJfqzk751IqnsqiLiW1CTBo', 1, '2018-12-04 23:29:41', '2018-12-08 16:31:33'),
+(30, 'Hoàng Thị ', 'Trang', 'tranght62@wru.vn', '123123', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Customer', 'SsdfsDFSFDFSdfsDsDsfSSDfFSdESDF', 1, '2018-12-20 23:08:51', '2018-12-20 16:10:17');
 
 --
 -- Các ràng buộc cho các bảng đã đổ
