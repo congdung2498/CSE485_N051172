@@ -6,7 +6,7 @@ app.controller("subjectCtl", function($scope,$http,$timeout) {
     $scope.subject={};
 
     $scope.getSubjects=function(){
-        $http.get("http://localhost:81/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
             console.log(response);
         $scope.Subjects = response.data.records;
         $scope.bsTableSubjectControl.options.data = $scope.Subjects;
@@ -20,7 +20,7 @@ app.controller("subjectCtl", function($scope,$http,$timeout) {
     $scope.saveSubject=function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/subject/controller/postSubject.php?method=post_question",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/subject/controller/postSubject.php?method=post_question",
             data: {
                 subject: $scope.subject
             },
@@ -47,7 +47,7 @@ app.controller("subjectCtl", function($scope,$http,$timeout) {
     $scope.deleteSubject= function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/subject/controller/deleteSubject.php?method=del_subject",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/subject/controller/deleteSubject.php?method=del_subject",
             data: {
                 subjectID: $scope.subject.ID_Subject
             },
