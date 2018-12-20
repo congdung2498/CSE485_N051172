@@ -6,7 +6,7 @@ class Database{
     private $host = "localhost";
     private $db_name = "test-app";
     private $username = "root";
-    private $password = "123456";
+    private $password = "";
     public $conn;
  
     // get the database connection
