@@ -3,7 +3,7 @@ var app = angular.module("testApp",  ['bsTable']);
 app.controller("ExamDetailCtl", function($scope,$http,$timeout,$location) {
     
     $scope.getExams=function(){
-        $http.get("http://localhost:81/test-app/user/exam/controller/getExam.php?method=load_Exams").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/user/exam/controller/getExam.php?method=load_Exams").then(function (response) {
         $scope.Exams = response.data.records;
         console.log($scope.Exams);
     });
@@ -21,7 +21,7 @@ app.controller("ExamDetailCtl", function($scope,$http,$timeout,$location) {
     $scope.RandomQS= function(){
             var request = $http({
                 method: "POST",
-                url: "http://localhost:81/test-app/admin/exam/controller/postExam.php?method=post_question",
+                url: "http://localhost/CSE485_N051172/N051172/Sources/admin/exam/controller/postExam.php?method=post_question",
                 data: {
                     exam: $scope.exam
                 },
