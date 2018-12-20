@@ -8,7 +8,7 @@ app.controller("userCtrl", function($scope,$http,$timeout) {
     }
     
     $scope.getUsers=function(){
-        $http.get("http://localhost/test-app/admin/user/controller/getUsers.php?method=load_users").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/user/controller/getUsers.php?method=load_users").then(function (response) {
         $scope.Users = response.data.records;
         $scope.bsTableControl.options.data =  $scope.Users;
         $scope.bsTableControl.options.totalRows = $scope.Users.length; 
@@ -25,7 +25,7 @@ app.controller("userCtrl", function($scope,$http,$timeout) {
        
         var request = $http({
             method: "POST",
-            url: "http://localhost/test-app/admin/user/controller/postUser.php?method=post_user",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/user/controller/postUser.php?method=post_user",
             data: {
                 user: $scope.user
             },
@@ -48,7 +48,7 @@ app.controller("userCtrl", function($scope,$http,$timeout) {
     $scope.saveUser =function(){
         var request = $http({
             method: "PUT",
-            url: "http://localhost/test-app/admin/user/controller/updateUser.php?method=put_User",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/user/controller/updateUser.php?method=put_User",
             data: {
                 user: $scope.user,
             },
@@ -74,7 +74,7 @@ app.controller("userCtrl", function($scope,$http,$timeout) {
     $scope.deleteUser= function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost/test-app/admin/user/controller/deleteUser.php?method=del_user",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/user/controller/deleteUser.php?method=del_user",
             data: {
                 userID: $scope.user.ID_User
             },
