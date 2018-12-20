@@ -12,7 +12,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
     $scope.selectedUser=[];
 
     $scope.getExams=function(){
-        $http.get("http://localhost:81/test-app/admin/exam_config/controller/getExam.php?method=load_Exams").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/exam_config/controller/getExam.php?method=load_Exams").then(function (response) {
             console.log(response);
         $scope.Exams = response.data.records;
         $scope.bsTableExamControl.options.data = $scope.Exams;
@@ -29,7 +29,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
     $scope.saveExam=function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/exam_config/controller/postExam.php?method=post_question",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/exam_config/controller/postExam.php?method=post_question",
             data: {
                 exam: $scope.exam
             },
@@ -57,7 +57,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
     $scope.deleteExam= function(){
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/exam_config/controller/deleteExam_config.php?method=del_exam",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/exam_config/controller/deleteExam_config.php?method=del_exam",
             data: {
                 examID: $scope.exam.ID_ExamConfig
             },
@@ -74,13 +74,13 @@ app.controller("examCtl", function($scope,$http,$timeout) {
         });
     }
     $scope.getSubjects=function(){
-        $http.get("http://localhost:81/test-app/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/subject/controller/getSubject.php?method=load_subjects").then(function (response) {
             console.log(response);
         $scope.Subjects = response.data.records;
     });
     } 
     $scope.getUsers=function(){
-        $http.get("http://localhost:81/test-app/admin/user/controller/getUsers.php?method=load_users").then(function (response) {
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/admin/user/controller/getUsers.php?method=load_users").then(function (response) {
         $scope.Users = response.data.records;
         $scope.bsTableUserControl.options.data =  $scope.Users;
         $scope.bsTableUserControl.options.totalRows = $scope.Users.length; 
@@ -91,7 +91,7 @@ app.controller("examCtl", function($scope,$http,$timeout) {
         
         var request = $http({
             method: "POST",
-            url: "http://localhost:81/test-app/admin/exam_config/controller/getUserbyExamID.php?method=load_users",
+            url: "http://localhost/CSE485_N051172/N051172/Sources/admin/exam_config/controller/getUserbyExamID.php?method=load_users",
             data: {
                 examID: $scope.exam.ID_ExamConfig
             },
