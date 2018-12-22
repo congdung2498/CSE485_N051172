@@ -2,7 +2,7 @@ var app = angular.module("testApp",  ['bsTable']);
 
 app.controller("ExamDetailCtl", function($scope,$http,$timeout,$location) {
     
-   
+    var time;
     var absUrl = $location.absUrl();
     var a=absUrl.lastIndexOf("/");
     var s="";
@@ -27,9 +27,28 @@ app.controller("ExamDetailCtl", function($scope,$http,$timeout,$location) {
                     for(var i=0; i<$scope.Questions.length; i++){
                         $scope.Questions[i].index=i+1;
                     }
-                    console.log( $scope.Questions);
+                    $scope.config=response.data.config[0];
+                    $scope.timeclock($scope.config.Totaltime*60);
+
             });
     }
     $scope.getQuestions();
+    $scope.timeclock=function(time){
+        var clock;
+        $(document).ready(function() {
+            console.log(time);
+            clock = $('.clock').FlipClock(time, {
+                clockFace: 'MinuteCounter',
+                countdown: true,
+                callbacks: {
+                    stop: function() {
+                        $('.message').html('The clock has stopped!');
+                    }
+                }
+            });
+
+        });
+    }
+   
     
 });
