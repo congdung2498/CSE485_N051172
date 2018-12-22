@@ -3,6 +3,7 @@ app.controller("userCtrl", function($scope,$http,$timeout) {
     $scope.Users=[];
     $scope.check=false;
     $scope.result=null;
+    $scope.user={};
     $scope.edit=function(x){
         alert("Row index is: " +x);
     }
