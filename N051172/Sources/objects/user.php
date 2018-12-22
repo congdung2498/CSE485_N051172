@@ -340,7 +340,7 @@ public function deleleUser(){
     if($stmt3->execute()) $rs3=1;
     else $rs3=0;
 
-    if($rs1==1&& $rs2==1&&rs3==1) echo 1;
+    if($rs1==1|| $rs2==1||rs3==1) echo 1;
     else echo 0;
 }
 
