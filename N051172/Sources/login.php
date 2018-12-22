@@ -92,7 +92,7 @@ if($access_denied){
 }
  
     // actual HTML login form
-    echo "<div class='account-wall'>";
+    echo "<div class='account-wall' style='margin-top: 140px'>";
         echo "<div id='my-tab-content' class='tab-content'>";
             echo "<div class='tab-pane active' id='login'>";
                 echo "<img class='profile-img' src='images/login-icon.png'>";
