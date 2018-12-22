@@ -20,40 +20,25 @@ class QuestionAnswers
         $query = "SELECT a.ID_Question, a.ContentQs FROM question a , exam_question b 
 		Where a.ID_Question = b.ID_Question and b.ID_Exam =".$ExID; //lay cau hoi
     	$stmt = $this->conn->prepare( $query);
-		if($stmt->execute()){
-			echo 1;
-		}
-		else {
-			$jsonData=array();
-			$jsonData['records']=$stmt->errorInfo();;
-			echo json_encode($jsonData);
-		} 
-		
+		$stmt->execute();
 		$data=array();
 		while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		
             $question = new QuestionAnswers($this->conn);
             $question->ID_Question=(int)$rs["ID_Question"];
-            $question->ContentQs=(int)$rs["ContentQs"];
+            $question->ContentQs=$rs["ContentQs"];
 		    
 
 		   
 		$query2 = "SELECT ID_Answer, ContentAs , Iscorrect FROM answer a , question b , exam_question c
-		Where a.ID_Question = b.ID_Question and b.ID_Question= c.ID_Question and c.ID_Exam =".$ExID;	
-    	$stmt = $this->conn->prepare( $query2);
-		if($stmt->execute()){
-			echo 1;
-		}
-		else {
-			$jsonData=array();
-			$jsonData['records']=$stmt->errorInfo();;
-			echo json_encode($jsonData);
-		} 
+		Where a.ID_Question = b.ID_Question and b.ID_Question= c.ID_Question and b.ID_Question =". $question->ID_Question." and c.ID_Exam =".$ExID;	
+    	$stmt2 = $this->conn->prepare( $query2);
+		$stmt2->execute();
 		
-		while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		while ($rs = $stmt2->fetch(PDO::FETCH_ASSOC)) {
            $answer= new Answer();
 		   $answer->ID_Answer=(int)$rs["ID_Answer"];
-		   $answer->ContentAs=(int)$rs["ContentAs"];
+		   $answer->ContentAs=$rs["ContentAs"];
 		   $answer->Iscorrect=(int)$rs["Iscorrect"];		   
 		   array_push($question->ListAnswer,$answer);
 		}
