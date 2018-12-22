@@ -1,7 +1,5 @@
 <?php
-/**
- * 
- */
+include_once 'question-answer.php';
 class Exam
 {
 
@@ -9,7 +7,6 @@ class Exam
 	private $table_name = "exam";
 
 	public $ID_Exam;
-	public $ListQuestion = array();
 	public $Question;
 	public $ID_ExamConfig;
 	public $ID_User;
@@ -46,7 +43,6 @@ class Exam
 		}
 			
 		$Number_Question=$this->getNum_Question();
-		
 		$randomQuestionList=array();
 		
 		while(count($randomQuestionList) < $Number_Question){
@@ -74,15 +70,10 @@ class Exam
 				else $rs3=0;
    		 	}	
 
-		
-
-		
-
-		if ($rs1 == 1 && $rs3==1 ) {
-			echo 1;
-		}else{
-			echo 0;
-        }
+		// $question = new QuestionAnswers($this->conn);
+		// $stmt = $question->getQSbyExamID($IDExam);
+		// echo $stmt;
+		echo $IDExam;
         
 		
 	}
@@ -103,35 +94,35 @@ class Exam
 		return $rs[0];
 	}
 
-	public function getQSbyExamID(){
+	// public function getQSbyExamID(){
 
-		$query = "SELECT a.ID_Question, a.ContentQs FROM question a , exam_question b 
-		Where a.ID_Question = b.ID_Question and b.ID_Exam =".$this->ID_Exam; //lay cau hoi
-    	$stmt = $this->conn->prepare( $query);
-    	$stmt->execute();
-		$data=array();
-		while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		   $row=array();
-		   $row['ID_Question']=(int)$rs["ID_Question"];
-		   $row['ContentQs']=$rs["ContentQs"];
-		   $data['question']=$row;
+	// 	$query = "SELECT a.ID_Question, a.ContentQs FROM question a , exam_question b 
+	// 	Where a.ID_Question = b.ID_Question and b.ID_Exam =".$this->ID_Exam; //lay cau hoi
+    // 	$stmt = $this->conn->prepare( $query);
+    // 	$stmt->execute();
+	// 	$data=array();
+	// 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
+	// 	   $row=array();
+	// 	   $row['ID_Question']=(int)$rs["ID_Question"];
+	// 	   $row['ContentQs']=$rs["ContentQs"];
+	// 	   $data['question']=$row;
 
 		   
-		$query2 = "SELECT ID_Answer, ContentAs , Iscorrect FROM answer a , question b 
-		Where a.ID_Question = b.ID_Question and b.ID_Exam =".$this->ID_Exam; //lay cau hoi
-    	$stmt = $this->conn->prepare( $query);
-    	$stmt->execute();
-		$data=array();
-		while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		   $row=array();
-		   $row['ID_Question']=(int)$rs["ID_Question"];
-		   $row['ContentQs']=$rs["ContentQs"];
-		   $data[]=$row;
-		}
-		}
+	// 	$query2 = "SELECT ID_Answer, ContentAs , Iscorrect FROM answer a , question b 
+	// 	Where a.ID_Question = b.ID_Question and b.ID_Exam =".$this->ID_Exam; //lay cau hoi
+    // 	$stmt = $this->conn->prepare( $query);
+    // 	$stmt->execute();
+	// 	$data=array();
+	// 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
+	// 	   $row=array();
+	// 	   $row['ID_Question']=(int)$rs["ID_Question"];
+	// 	   $row['ContentQs']=$rs["ContentQs"];
+	// 	   $data[]=$row;
+	// 	}
+	// 	}
 
 
-	}
+	// }
 
 }
 
