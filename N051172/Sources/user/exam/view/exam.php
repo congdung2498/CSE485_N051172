@@ -11,8 +11,13 @@ $page_title="Thi trực tuyến";
 include '../../../layout_head.php';
 
 ?>
+<link rel="stylesheet" href="../../../../libs/clock/flipclock.css">
+
+
 <div ng-app="testApp" ng-controller="ExamDetailCtl">
-<div class="col-xs-12" style="height: 100%;display: table-row;">
+<div class="row">
+
+	<div class="col-xs-10" style="height: 100%;display: table-row;">
 
         <div class="col-xs-12 content " style="margin-top:10px;" ng-repeat="question in Questions" >
              <div class="col-xs-12 " style="font-weight: bold; font-size: 18px; margin-top:10px;">
@@ -29,31 +34,47 @@ include '../../../layout_head.php';
 						</div>
 					</div>
 				</div>
-             <!-- <div class="col-xs-12" >
-             <input type="radio" ng-model="myAnswer" ng-value="question.ListAnswer[0].Iscorrect">
-               <b> {{question.ListAnswer[0].ContentAs}}</b>
-             </div>
-
-             <div class="col-xs-12" >
-             <input type="radio" ng-model="myAnswer" ng-value="question.ListAnswer[1].Iscorrect">
-               <b> {{question.ListAnswer[1].ContentAs}}</b>
-             </div>
-
-             <div class="col-xs-12" >
-             <input type="radio" ng-model="myAnswer" ng-value="question.ListAnswer[2].Iscorrect">
-               <b> {{question.ListAnswer[2].ContentAs}}</b>
-             </div>
-
-             <div class="col-xs-12" >
-             <input type="radio" ng-model="myAnswer" ng-value="question.ListAnswer[3].Iscorrect">
-               <b> {{question.ListAnswer[3].ContentAs}}</b>
-             </div> -->
             
         </div>
         
+	</div>
+
+	<div class="col-xs-2" style="background:white;height:100%; position:fixed; right:0; margin-top:50px;">
+			<div class="name" style="font-size:16px; margin-top:20px; border-bottom: 1px solid black;">
+				<b>{{config.Name}} </b>
+            </div>
+
+            <div class="Subjectname" style="margin-top:10px;">
+				<i class="fas fa-book-reader"></i> Môn: {{config.subjectName}}
+            </div>
+
+            <div class="NumberQs" style="margin-top:10px;">
+                <i class="fas fa-list-ol"></i> Số lượng câu hỏi: {{config.Num_Question}} câu
+        	</div>
+
+			<div class="Totaltime" style="margin-top:10px;">
+                <i class="far fa-clock"></i> Thời gian làm bài: {{config.Totaltime}} phút
+            </div>
+
+			<div class="Totaltime" style="margin-top:30px; color:#f58220; font-size:18px;">
+              <b>  <i class="far fa-clock"></i> Thời gian còn lại </b>
+			</div>
+			
+			<div class="clock" style="margin:2em;"></div>
+				<div class="message"></div>
+
+				
+	</div>
+
+
 </div>
+
     <script src="../../controller/examDetail.js"></script>
-    
+	<script src="../../../../libs/clock/flipclock.js"></script>	
+	<script type="text/javascript">
+					
+		
+	</script>
 </div>
 <?php include '../../../layout_foot.php';?>
 
