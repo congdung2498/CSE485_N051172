@@ -323,13 +323,24 @@ function accessCodeExists(){
     return false;
     
 }
-public function deleleUser(){   
-    $query1 = "DELETE FROM users WHERE ID_User=".$this->ID_User; 
+public function deleleUser(){
+    $query1 = "DELETE FROM exam WHERE ID_User=".$this->ID_User; 
     $stmt1 = $this->conn->prepare( $query1 );
     if($stmt1->execute()) $rs1=1;
-    else $rs1=0;
+    else $rs1=0; 
 
-    if($rs1==1) echo 1;
+    $query2 = "DELETE FROM exam_config_user WHERE ID_User=".$this->ID_User; 
+    $stmt2 = $this->conn->prepare( $query2 );
+    if($stmt2->execute()) $rs2=1;
+    else $rs2=0;
+    
+
+    $query3 = "DELETE FROM users WHERE ID_User=".$this->ID_User; 
+    $stmt3 = $this->conn->prepare( $query3 );
+    if($stmt3->execute()) $rs3=1;
+    else $rs3=0;
+
+    if($rs1==1&& $rs2==1&&rs3==1) echo 1;
     else echo 0;
 }
 
