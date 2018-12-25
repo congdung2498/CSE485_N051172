@@ -13,7 +13,7 @@ if($_GET['method'] == "load_Results")
 	$data=array();
 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		   $row=array();
-		   $row['ID_Result']=addslashes($rs["ID_Result"]);
+		  
            $row['firstname']=addslashes($rs["firstname"]);
            $row['Name']=addslashes($rs["Name"]);
            $row['Score']=addslashes($rs["Score"]);
