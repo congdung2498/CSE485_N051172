@@ -15,19 +15,20 @@ include '../../../layout_head.php';
 
 
 <div ng-app="testApp" ng-controller="ExamDetailCtl">
+
 <div class="row">
 
 	<div class="col-xs-10" style="height: 100%;display: table-row;">
 
         <div class="col-xs-12 content " style="margin-top:10px;" ng-repeat="question in Questions" >
              <div class="col-xs-12 " style="font-weight: bold; font-size: 18px; margin-top:10px;">
-                Câu hỏi {{question.index}}: {{question.ContentQs}}
+                <u>Câu hỏi {{question.index}}:</u> {{question.ContentQs}}
              </div>
             
              <div class="clearfix"  ng-repeat="anwser in question.ListAnswer">
 					<div class="col-xs-12 ">
 						<div class="checkbox anwser">
-							<label style="font-weight: bold;"> <input type="checkbox" ng-model="anwser.isChecked"> 
+							<label style="font-weight: bold;"> <input type="checkbox" ng-model="anwser.checked" > 
 								<span class="cr" style="margin-top: 4px;"><i class="cr-icon glyphicon glyphicon-ok"></i></span> 
 								<span style="padding-left: 10px; font-size: 18px;">{{anwser.ContentAs}}</span>
 							</label>
@@ -39,7 +40,7 @@ include '../../../layout_head.php';
         
 	</div>
 
-	<div class="col-xs-2" style="background:white;height:100%; position:fixed; right:0; margin-top:50px;">
+	<div class="col-xs-2" style="background:white;height:80%; position:fixed; right:0;">
 			<div class="name" style="font-size:16px; margin-top:20px; border-bottom: 1px solid black;">
 				<b>{{config.Name}} </b>
             </div>
@@ -62,13 +63,53 @@ include '../../../layout_head.php';
 			
 			<div class="clock" style="margin:2em;"></div>
 				<div class="message"></div>
-
+			<button type="button" ng-click="checkoptions(Questions)" style="height:50px; width:100px; margin-left:30%"class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nộp bài</button>
 				
+			<div style="font-size:18px;">
+				<div style="margin-top:10px;" ng-if="Isfinish==true"> Bạn làm đúng <b style= "color:red">{{NumberCorecct}}/{{config.Num_Question}}</b> câu hỏi</div>
+				<div style="margin-top:10px;" ng-if="Isfinish==true"> Điểm của bạn là:<b style= "color:red"> {{Score}}</b></div>
+			</div>
 	</div>
 
 
 </div>
+<div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" id="mydivheader">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"> Xác nhận</h4>
+                    </div>
+                    <div class="modal-body">
+
+                     <div class="panel panel-default" style="border: 0px ">
+                         <div class="panel-body" style="font-size: 18px;">
+
+                        <div class="row">
+                                <label class="col-xs-12 bold">Bạn đã trả lời: <b style="color:red">{{numberAnswer}}/{{config.Num_Question}}</b> câu hỏi</label>
+                        </div>    
+						<div class="row">
+                                <label class="col-xs-12 bold">Bạn có muốn nộp bài không ?</label>
+                        </div>
+                        
+                        
+                         
+                         </div>                         
+
+
+                    </div>
+
+
+                    <div class="modal-footer">
+					<button type="button" ng-click="Submit(Questions)" class="btn btn-primary" data-dismiss="modal">Xác nhận</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+                </div>
+
+            </div>
+        </div>
     <script src="../../controller/examDetail.js"></script>
 	<script src="../../../../libs/clock/flipclock.js"></script>	
 	<script type="text/javascript">
