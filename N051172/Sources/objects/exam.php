@@ -94,35 +94,82 @@ class Exam
 		return $rs[0];
 	}
 
-	// public function getQSbyExamID(){
+	public function submit($ListAnswer){
+		$query = "select count(ID_Exam) from exam where score >= 0 and score <= 10 and ID_Exam = ".$this->ID_Exam; // kiểm tra xem đã nộp bài chưa
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+    	$rs = $stmt->fetch(PDO::FETCH_NUM);
+		
+		if($rs[0]==1){
+			$jsonData=array();
+			$jsonData['check']=0;		// đã nộp
+			echo json_encode($jsonData); 
+		}
+		else{ 
+			$numberCorrect=0;
+		$i=0;
 
-	// 	$query = "SELECT a.ID_Question, a.ContentQs FROM question a , exam_question b 
-	// 	Where a.ID_Question = b.ID_Question and b.ID_Exam =".$this->ID_Exam; //lay cau hoi
-    // 	$stmt = $this->conn->prepare( $query);
-    // 	$stmt->execute();
-	// 	$data=array();
-	// 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
-	// 	   $row=array();
-	// 	   $row['ID_Question']=(int)$rs["ID_Question"];
-	// 	   $row['ContentQs']=$rs["ContentQs"];
-	// 	   $data['question']=$row;
+		while($i<count($ListAnswer)){
+			$count=0;
+			for($j=$i+1;$j<count($ListAnswer)-1;$j++){
+				if($ListAnswer[$i]->ID_Question==$ListAnswer[$j]->ID_Question)
+				{
+					$count++;
+				}	
+			}
+			
+			if($this->checkNumberAs($ListAnswer[$i]->ID_Question)==$count+1){
+				$number=0;
+				
+				for($t=$i;$t<$count+1+$i;$t++){
+	
+					if($this->IscorrectAnswer($ListAnswer[$t]->ID_Answer)){
+						$number++;
+					}
+					
+				}
+				if ($number==$count+1){
+					$numberCorrect++;
+				}
+			}
+			else{
+				
+			}
+			
+			$i=$i+$count+1;
+			
+		}
+		$this->score = round($numberCorrect/$this->getNum_Question()*10, 2);
+		$query = "UPDATE ".$this->table_name." SET score = :score WHERE ID_Exam = ".$this->ID_Exam;
+		$stmt = $this->conn->prepare($query);
+		$stmt->bindParam(':score', $this->score);
+		if($stmt->execute()) $rs=1;
 
-		   
-	// 	$query2 = "SELECT ID_Answer, ContentAs , Iscorrect FROM answer a , question b 
-	// 	Where a.ID_Question = b.ID_Question and b.ID_Exam =".$this->ID_Exam; //lay cau hoi
-    // 	$stmt = $this->conn->prepare( $query);
-    // 	$stmt->execute();
-	// 	$data=array();
-	// 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
-	// 	   $row=array();
-	// 	   $row['ID_Question']=(int)$rs["ID_Question"];
-	// 	   $row['ContentQs']=$rs["ContentQs"];
-	// 	   $data[]=$row;
-	// 	}
-	// 	}
-
-
-	// }
+       
+		$jsonData=array();
+		$jsonData['numberCorrect']=$numberCorrect;
+		$jsonData['score']=$this->score;
+		$jsonData['check']=1;  
+		echo json_encode($jsonData);
+		}
+		
+	}
+	public function IscorrectAnswer($AsID){
+		$query = "SELECT Iscorrect  FROM answer  WHERE
+		ID_Answer =".$AsID;
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+    	$rs = $stmt->fetch(PDO::FETCH_NUM);
+		if ($rs[0]==1) return true;
+		else return false;
+	}
+	public function checkNumberAs($QsID){
+		$query = "select count(ID_Answer) from answer where Iscorrect=1 and ID_Question = ".$QsID;
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+    	$rs = $stmt->fetch(PDO::FETCH_NUM);
+		return($rs[0]);
+	}
 
 }
 
