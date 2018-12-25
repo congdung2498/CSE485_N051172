@@ -56,9 +56,7 @@ class Result
 	}
 
     public function getResults(){
-    	$query = "SELECT ID_Result , users.firstname, exam.Name, Score FROM ((result
-		INNER JOIN users ON result.ID_User = users.ID_User)
-		INNER JOIN exam ON result.ID_Exam = exam.ID_Exam)";
+    	$query = "SELECT  users.firstname, exam.Name, Score FROM exam.ID_User=users.ID_User";
     	$stmt = $this->conn->prepare( $query );
     	$stmt->execute();
     	return $stmt;
