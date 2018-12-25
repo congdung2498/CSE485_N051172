@@ -205,18 +205,10 @@ div#blueimp-gallery div.modal{ overflow: visible; }
 
     .container{
         background: #eff3f8;
-        width: 100%;
-        height:100%;
-        position: absolute;
-        
-        
+        width: 100%;        
     }
     .page-header{
         margin-top:70px;
-    }
-    .footer{
-        position:absolute;
-        bottom: 0;
     }
     .content{
        background: rgb(255, 255, 255);
@@ -227,3 +219,7 @@ div#blueimp-gallery div.modal{ overflow: visible; }
        margin-bottom:10px;
     
     }
+    .navbar{
+        margin-bottom: 0px;
+    
+        }
