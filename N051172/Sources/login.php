@@ -106,7 +106,13 @@ if($access_denied){
     echo "</div>";
  
 echo "</div>";
- 
+echo "<style>";
+echo ".container{";
+echo  " height:1000px;";
+echo"}";
+echo".navbar{";
+echo "margin-bottom: 0px;";
+echo "}";
 // footer HTML and JavaScript codes
 include_once "layout_foot.php";
 ?>
