@@ -74,4 +74,13 @@
 
 
 </div>
+<style>
+    .container{
+        height:1000px;
+    }
+    .navbar{
+    margin-bottom: 0px;
+
+    }
+</style>
   
