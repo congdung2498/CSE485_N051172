@@ -44,16 +44,9 @@ app.controller("resultCtl", function($scope,$http) {
             columns: [{
                 field: 'state',
                 checkbox: true
-            },
-             {
-                field: 'ID_Result',
-                title: 'ID kết quả',
-                align: 'center',
-                valign: 'bottom',
-                sortable: true
             }, {
                 field: 'firstname',
-                title: 'Tên người dùng',
+                title: 'Tên thí sinh',
                 align: 'center',
                 valign: 'bottom',
                 sortable: true
