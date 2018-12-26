@@ -206,6 +206,7 @@ div#blueimp-gallery div.modal{ overflow: visible; }
     .container{
         background: #eff3f8;
         width: 100%;        
+        padding: 0;
     }
     .page-header{
         margin-top:70px;
