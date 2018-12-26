@@ -77,6 +77,8 @@
 <style>
     .container{
         height:1000px;
+        padding-left:100px;
+        padding-right:100px;
     }
     .navbar{
     margin-bottom: 0px;
