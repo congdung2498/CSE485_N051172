@@ -56,7 +56,7 @@ class Result
 	}
 
     public function getResults(){
-    	$query = "SELECT  users.firstname, exam.Name, Score FROM exam.ID_User=users.ID_User";
+    	$query = "SELECT a.ID_User,firstname,lastname,name,score from users a, exam_config b, exam c where a.ID_User=c.ID_User and c.ID_ExamConfig=b.ID_ExamConfig ";
     	$stmt = $this->conn->prepare( $query );
     	$stmt->execute();
     	return $stmt;
