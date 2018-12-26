@@ -36,6 +36,9 @@ app.controller("dashboardCtl", function($scope,$http,$timeout,$rootScope,$locati
             $window.location.href="http://localhost/CSE485_N051172/N051172/Sources/user/exam/view/exam.php/"+$scope.IDExam;
         });
     }
+    $scope.continueExam = function(examID){
+        $window.location.href="http://localhost/CSE485_N051172/N051172/Sources/user/exam/view/exam.php/"+examID;
+    }
     $scope.login=function(){
         $window.location.href="http://localhost/CSE485_N051172/N051172/Sources/login.php"
     }
@@ -53,16 +56,19 @@ app.controller("dashboardCtl", function($scope,$http,$timeout,$rootScope,$locati
         /* Check whether the HTTP Request is successful or not. */
             request.then(function (response) {
                 $scope.checkdone=response.data;
-                $scope.checkdone=$scope.checkdone[0];
+                $scope.checkdone=$scope.checkdone;
                 console.log( $scope.checkdone)
-                if($scope.checkdone==1){
+                if($scope.checkdone==-1){
                     alert("Bạn đã làm đề thi này rồi.", "Thông Báo")
                 }
-                if($scope.checkdone==2){
+                if($scope.checkdone==-2){
                     alert("Bạn không có trong danh sách thi.", "Thông Báo")
                 }
                 if($scope.checkdone==0){
-                    $scope.createExam(userID,ID_ExamConfig);
+                    $scope.createExam(userID,ID_ExamConfig); // tao de thi moi
+                }
+                if($scope.checkdone>0){
+                    $scope.continueExam($scope.checkdone); // tiep tuc thi
                 }
         });
     }
