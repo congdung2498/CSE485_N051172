@@ -17,15 +17,21 @@ class Exam
 	}
 
 	public function createExam(){
+		date_default_timezone_set('Asia/Ho_Chi_Minh');
+		$now = date("Y-m-d H:i:s");//khởi tạo
+		$time=$this->getTime();
+		$endTime = date('Y-m-d H:i:s',strtotime("+0 hour +$time minutes", strtotime($now)));
 
 		$query = "INSERT INTO ".$this->table_name."
 		SET
 		ID_ExamConfig = :ID_ExamConfig,
-		ID_User= :ID_User";
+		ID_User= :ID_User,
+		endTime= :endTime";
 		
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(':ID_ExamConfig', $this->ID_ExamConfig);
 		$stmt->bindParam(':ID_User', $this->ID_User);
+		$stmt->bindParam(':endTime', $endTime);
 		if($stmt->execute()) $rs1=1;
 		else $rs1=0;
 		
@@ -111,10 +117,12 @@ class Exam
 
 		while($i<count($ListAnswer)){
 			$count=0;
-			for($j=$i+1;$j<count($ListAnswer)-1;$j++){
+			for($j=$i+1;$j<count($ListAnswer);$j++){
+				
 				if($ListAnswer[$i]->ID_Question==$ListAnswer[$j]->ID_Question)
 				{
 					$count++;
+					
 				}	
 			}
 			
@@ -145,7 +153,8 @@ class Exam
 		$stmt->bindParam(':score', $this->score);
 		if($stmt->execute()) $rs=1;
 
-       
+		
+
 		$jsonData=array();
 		$jsonData['numberCorrect']=$numberCorrect;
 		$jsonData['score']=$this->score;
@@ -165,6 +174,21 @@ class Exam
 	}
 	public function checkNumberAs($QsID){
 		$query = "select count(ID_Answer) from answer where Iscorrect=1 and ID_Question = ".$QsID;
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+    	$rs = $stmt->fetch(PDO::FETCH_NUM);
+		return($rs[0]);
+	}
+	public function getExamID(){
+		$query = "select ID_Exam from exam where ID_User =".$this->ID_User." and ID_ExamConfig = ".$this->ID_ExamConfig;
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+    	$rs = $stmt->fetch(PDO::FETCH_NUM);
+		return($rs[0]);
+	}
+
+	public function getTime(){
+		$query = "select Totaltime from exam_config where ID_ExamConfig = ".$this->ID_ExamConfig;
     	$stmt = $this->conn->prepare( $query );
     	$stmt->execute();
     	$rs = $stmt->fetch(PDO::FETCH_NUM);
