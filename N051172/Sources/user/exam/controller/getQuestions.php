@@ -9,11 +9,12 @@ $request = json_decode($postdata);
 
 
 	$IDExam=$request->examID;
+	$IDUser=$request->userID;
 	$database = new Database();
 	$db = $database->getConnection();
 
 	$question = new QuestionAnswers($db);
-	$stmt = $question->getQSbyExamID($IDExam);
+	$stmt = $question->getQSbyExamID($IDExam,$IDUser);
 	echo $stmt;
  
 
