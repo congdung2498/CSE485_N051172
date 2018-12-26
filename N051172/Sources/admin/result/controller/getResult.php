@@ -13,10 +13,11 @@ if($_GET['method'] == "load_Results")
 	$data=array();
 	while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		   $row=array();
-		  
-           $row['firstname']=addslashes($rs["firstname"]);
-           $row['Name']=addslashes($rs["Name"]);
-           $row['Score']=addslashes($rs["Score"]);
+		   $row['ID_User']=addslashes($rs["ID_User"]);
+		   $row['firstname']=addslashes($rs["firstname"]);
+           $row['lastname']=addslashes($rs["lastname"]);
+           $row['name']=addslashes($rs["name"]);
+           $row['score']=addslashes($rs["score"]);
 		   $data[]=$row;
 	}
 	$jsonData=array();
