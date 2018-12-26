@@ -13,33 +13,45 @@ app.controller("ExamDetailCtl", function($scope,$http,$timeout,$location,$window
         s=s+""+absUrl[i];
     }
     $scope.examID= parseInt(s);
-    console.log($scope.examID);
-    $scope.getQuestions= function(){
+    $scope.getIDUser=function(){
+        $http.get("http://localhost/CSE485_N051172/N051172/Sources/user/exam/controller/getIDUser.php?method=load_IDUser").then(function (response) {
+        $scope.IDUser = response.data;
+        $scope.getQuestions($scope.IDUser);
+    });
+    }
+    $scope.getIDUser();
+    $scope.getQuestions= function(IDUser){
             var request = $http({
                 method: "POST",
                 url: "http://localhost/CSE485_N051172/N051172/Sources/user/exam/controller/getQuestions.php?method=load_Ques",
                 data: {
-                    examID:  $scope.examID
+                    examID:  $scope.examID,
+                    userID: IDUser
                 },
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 });
             
             /* Check whether the HTTP Request is successful or not. */
                 request.then(function (response) {
-                    $scope.Questions=response.data.records;
-                    for(var i=0; i<$scope.Questions.length; i++){
-                        $scope.Questions[i].index=i+1;
+                    if(response.data.check==true){
+                        $scope.Questions=response.data.records;
+                        for(var i=0; i<$scope.Questions.length; i++){
+                            $scope.Questions[i].index=i+1;
+                        }
+                        $scope.config=response.data.config[0];
+                        $scope.timeclock(response.data.time);
                     }
-                    $scope.config=response.data.config[0];
-                    $scope.timeclock($scope.config.Totaltime*60);
+                    else{
+                        $window.location.href="http://localhost/CSE485_N051172/N051172/Sources/";
+                    }
+                   
 
             });
     }
-    $scope.getQuestions();
+ 
     $scope.timeclock=function(time){
         var clock;
         $(document).ready(function() {
-            console.log(time);
             clock = $('.clock').FlipClock(time, {
                 clockFace: 'MinuteCounter',
                 countdown: true,
