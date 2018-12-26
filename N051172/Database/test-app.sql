@@ -647,7 +647,7 @@ INSERT INTO `users` (`ID_User`, `firstname`, `lastname`, `email`, `contact_numbe
 (20, 'Tim', 'Duncan', 'tim@example.com', '9999999', 'San Antonio, Texas, USA', '$2y$10$9OSKHLhiDdBkJTmd3VLnQeNPCtyH1IvZmcHrz4khBMHdxc8PLX5G6', 'Admin', '0X4JwsRmdif8UyyIHSOUjhZz9tva3Czj', 1, '2016-05-26 01:25:59', '2018-12-25 16:56:30'),
 (21, 'Tony', 'Parker', 'tony@example.com', '8888888', 'Blk 24 A Lot 6 Ph 3\r\nPeace Village, San Luis', '$2y$10$lBJfvLyl/X5PieaztTYADOxOQeZJCqETayF.O9ld17z3hcKSJwZae', 'Admin', 'THM3xkZzXeza5ISoTyPKl6oLpVa88tYl', 1, '2016-05-26 01:29:01', '2018-12-08 16:31:33'),
 (29, 'Lê Công', 'Dũng', 'congdung2498@gmail.com', '01627317786', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Admin', 'NgXfDBtIftJfqzk751IqnsqiLiW1CTBo', 1, '2018-12-04 23:29:41', '2018-12-08 16:31:33'),
-(30, 'Hoàng Thị ', 'Trang', 'tranght62@wru.vn', '123123', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Admin', 'SsdfsDFSFDFSdfsDsDsfSSDfFSdESDF', 1, '2018-12-20 23:08:51', '2018-12-26 13:05:21');
+(30, 'Hoàng Thị ', 'Trang', 'tranght62@wru.vn', '123123', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Customer', 'SsdfsDFSFDFSdfsDsDsfSSDfFSdESDF', 1, '2018-12-20 23:08:51', '2018-12-26 13:05:21');
 
 --
 -- Chỉ mục cho các bảng đã đổ
