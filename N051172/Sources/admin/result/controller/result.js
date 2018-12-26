@@ -44,15 +44,30 @@ app.controller("resultCtl", function($scope,$http) {
             columns: [{
                 field: 'state',
                 checkbox: true
-            }, {
-                field: 'firstname',
-                title: 'Tên thí sinh',
+            }
+            , {
+                field: 'ID_User',
+                title: 'Mã thí sinh',
                 align: 'center',
                 valign: 'bottom',
                 sortable: true
             }
             , {
-                field: 'Name',
+                field: 'firstname',
+                title: 'Họ',
+                align: 'center',
+                valign: 'bottom',
+                sortable: true
+            }
+            , {
+                field: 'lastname',
+                title: 'Tên',
+                align: 'center',
+                valign: 'bottom',
+                sortable: true
+            }
+            , {
+                field: 'name',
                 title: 'Tên bài kiểm tra',
                 align: 'center',
                 valign: 'bottom',
@@ -60,7 +75,7 @@ app.controller("resultCtl", function($scope,$http) {
             }
             ,
             {
-                field: 'Score',
+                field: 'score',
                 title: 'Điểm số',
                 align: 'center',
                 valign: 'bottom',
