@@ -19,7 +19,10 @@
             <ul class="nav navbar-nav">
                 <!-- link to the "Cart" page, highlight if current page is cart.php -->
                 <li <?php echo $page_title=="Hệ thống thi trắc nghiệm trực tuyến" ? "class='active'" : ""; ?>>
-                    <a href="<?php echo $home_url; ?>">Home</a>
+                    <a href="<?php echo $home_url; ?>">Trang chủ</a>
+                </li>
+                <li <?php echo $page_title=="Tra cứu điểm thi" ? "class='active'" : ""; ?>>
+                    <a href="<?php echo $home_url; ?>user/result/view/result.php">Điểm thi</a>
                 </li>
             </ul>
  
