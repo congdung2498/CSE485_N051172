@@ -61,6 +61,24 @@ class Result
     	$stmt->execute();
     	return $stmt;
 	}
+	public function getResultsbyUserID($IDuser){
+    	$query = "SELECT a.ID_User,firstname,lastname,name,score from users a, exam_config b, exam c where a.ID_User=c.ID_User and c.ID_ExamConfig=b.ID_ExamConfig and a.ID_User=".$IDuser;
+    	$stmt = $this->conn->prepare( $query );
+    	$stmt->execute();
+		$data=array();
+		while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		   $row=array();
+		   $row['ID_User']=addslashes($rs["ID_User"]);
+		   $row['firstname']=addslashes($rs["firstname"]);
+           $row['lastname']=addslashes($rs["lastname"]);
+           $row['name']=addslashes($rs["name"]);
+           $row['score']=addslashes($rs["score"]);
+		   $data[]=$row;
+	}
+	$jsonData=array();
+	$jsonData['records']=$data;
+	echo json_encode($jsonData);
+	}
 
 
 }
