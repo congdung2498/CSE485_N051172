@@ -40,12 +40,12 @@ include '../../layout_head.php';
         </div>
     <div>
 
-    <div class="alert alert-success alert-dismissible" ng-if="result==1">
+    <div class="alert alert-success alert-dismissible" style="position:fixed; z-index:1000; right:10px; bottom:20px; height:100px;" ng-if="result==1">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Thành công!</strong> Bạn đã cập nhật thành công.
     </div>
 
-    <div class="alert alert-danger" ng-if="result==0">
+    <div class="alert alert-danger" style="position:fixed; z-index:1000; right:10px; bottom:20px; height:100px;" ng-if="result==0">
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>Lỗi!</strong> Có lỗi xảy ra trong quá trình cập nhật.
     </div>
