@@ -12,7 +12,7 @@
             </button>
  
             <!-- Change "Your Site" to your site name -->
-            <a class="navbar-brand" href="<?php echo $home_url; ?>">Your Site</a>
+           
         </div>
  
         <div class="navbar-collapse collapse">
@@ -40,7 +40,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['a
                 &nbsp;&nbsp;<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <li><a href="<?php echo $home_url; ?>logout.php">Logout</a></li>
+                <li><a href="<?php echo $home_url; ?>logout.php">Đăng xuất</a></li>
             </ul>
         </li>
     </ul>
@@ -54,13 +54,13 @@ else{
     <ul class="nav navbar-nav navbar-right">
         <li <?php echo $page_title=="Login" ? "class='active'" : ""; ?>>
             <a href="<?php echo $home_url; ?>login.php">
-                <span class="glyphicon glyphicon-log-in"></span> Log In
+                <span class="glyphicon glyphicon-log-in"></span> Đăng nhập
             </a>
         </li>
      
         <li <?php echo $page_title=="Register" ? "class='active'" : ""; ?>>
             <a href="<?php echo $home_url; ?>register.php">
-                <span class="glyphicon glyphicon-check"></span> Register
+                <span class="glyphicon glyphicon-check"></span> Đăng ký
             </a>
         </li>
     </ul>
