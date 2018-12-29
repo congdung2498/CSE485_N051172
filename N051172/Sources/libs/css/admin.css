@@ -44,13 +44,24 @@
 
 .alert{
     position: relative;
-    -webkit-animation-name: example;  /* Safari 4.0 - 8.0 */
+    -webkit-animation-name: alert;  /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 1s;  /* Safari 4.0 - 8.0 */    
     -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */
-    animation-name: example;
+    animation-name: alert;
     animation-duration: 1s;    
     animation-fill-mode: forwards;
 }
+@-webkit-keyframes alert {
+    from {bottom: -200px;}
+    to {bottom:20px; }
+}
+
+@keyframes alert {
+    from {bottom: -200px;}
+    to {bottom: 20px ;}
+}
+
+
 @-webkit-keyframes example {
     from {top: 200px;}
     to {top:0px; }
