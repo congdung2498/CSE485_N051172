@@ -19,6 +19,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
      <!-- admin custom CSS -->
     <link href="<?php echo $home_url . "libs/css/admin.css" ?>" rel="stylesheet" />
+    <link rel="icon" href="<?php echo $home_url?>/images/favicon.png" type="image/png"/>
+    <link rel="shortcut icon" href="<?php echo $home_url?>/images/favicon.png" type="image/png"/>
  
 </head>
 <body ng-controller="TestAppCtrl">
