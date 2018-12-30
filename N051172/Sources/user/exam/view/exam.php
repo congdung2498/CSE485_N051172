@@ -18,7 +18,7 @@ include '../../../layout_head.php';
 
 <div class="row">
 
-	<div class="col-xs-10" style="height: 100%;display: table-row;">
+	<div class="col-xs-12 col-sm-10" style="height: 100%;display: table-row;">
 
         <div class="col-xs-12 content " style="margin-top:10px;" ng-repeat="question in Questions" >
              <div class="col-xs-12 " style="font-weight: bold; font-size: 18px; margin-top:10px;">
@@ -40,7 +40,7 @@ include '../../../layout_head.php';
         
 	</div>
 
-	<div class="col-xs-2" style="background:white;height:80%; position:fixed; right:0;">
+	<div class="col-xs-12 col-sm-2" style="background:white;height:100%;">
 			<div class="name" style="font-size:16px; margin-top:20px; border-bottom: 1px solid black;">
 				<b>{{config.Name}} </b>
             </div>
@@ -61,9 +61,9 @@ include '../../../layout_head.php';
               <b>  <i class="far fa-clock"></i> Thời gian còn lại </b>
 			</div>
 			
-			<div class="clock" style="margin:2em;"></div>
+			<div class="clock" style="margin-top:2em;"></div>
 				<div class="message"></div>
-			<button type="button" ng-click="checkoptions(Questions)" style="height:50px; width:100px; margin-left:30%"class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nộp bài</button>
+			<button type="button" ng-click="checkoptions(Questions)" style="height:50px; width:100px; margin-left:30%; margin-bottom:20px;"class="btn btn-primary" data-toggle="modal" data-target="#myModal">Nộp bài</button>
 				
 			<div style="font-size:18px;">
 				<div style="margin-top:10px;" ng-if="Isfinish==true"> Bạn làm đúng <b style= "color:red">{{NumberCorecct}}/{{config.Num_Question}}</b> câu hỏi</div>
