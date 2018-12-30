@@ -2,10 +2,10 @@
 -- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 26, 2018 lúc 02:06 PM
--- Phiên bản máy phục vụ: 10.1.36-MariaDB
--- Phiên bản PHP: 7.2.11
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th12 30, 2018 lúc 11:41 AM
+-- Phiên bản máy phục vụ: 5.7.22-log
+-- Phiên bản PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,22 +28,21 @@ SET time_zone = "+00:00";
 -- Cấu trúc bảng cho bảng `answer`
 --
 
-CREATE TABLE `answer` (
-  `ID_Answer` int(11) NOT NULL,
+DROP TABLE IF EXISTS `answer`;
+CREATE TABLE IF NOT EXISTS `answer` (
+  `ID_Answer` int(11) NOT NULL AUTO_INCREMENT,
   `ID_Question` int(11) DEFAULT NULL,
   `ContentAs` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Iscorrect` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `Iscorrect` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_Answer`),
+  KEY `answer` (`ID_Question`)
+) ENGINE=InnoDB AUTO_INCREMENT=502 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `answer`
 --
 
 INSERT INTO `answer` (`ID_Answer`, `ID_Question`, `ContentAs`, `Iscorrect`) VALUES
-(132, 75, 'A. Hyperlinks and Text Markup Language', 0),
-(133, 75, 'B: Home Tool Markup Language', 0),
-(134, 75, 'C. Hyper Text Markup Language', 1),
-(135, 75, 'D. Tất cả đều sai', 0),
 (136, 76, 'A. The World Wide Web Consortium', 1),
 (137, 76, 'B. Microsoft', 0),
 (138, 76, 'C. Netscape', 0),
@@ -403,7 +402,11 @@ INSERT INTO `answer` (`ID_Answer`, `ID_Question`, `ContentAs`, `Iscorrect`) VALU
 (494, 170, 'C.Sơ đồ triển khai (Deployment Diagram)', 1),
 (495, 171, 'A.Một bước trong chuỗi sự kiện', 0),
 (496, 171, 'B.Một công việc hoặc chức năng đơn lẻ được thi hành bởi hệ thống', 1),
-(497, 171, 'C.Một vai trò được thực hiện bởi người dùng bên ngòai hệ thống', 0);
+(497, 171, 'C.Một vai trò được thực hiện bởi người dùng bên ngòai hệ thống', 0),
+(498, 75, 'A. Hyperlinks and Text Markup Language', 0),
+(499, 75, 'B: Home Tool Markup Language', 0),
+(500, 75, 'C. Hyper Text Markup Language', 1),
+(501, 75, 'D. Tất cả đều sai', 0);
 
 -- --------------------------------------------------------
 
@@ -411,13 +414,24 @@ INSERT INTO `answer` (`ID_Answer`, `ID_Question`, `ContentAs`, `Iscorrect`) VALU
 -- Cấu trúc bảng cho bảng `exam`
 --
 
-CREATE TABLE `exam` (
-  `ID_Exam` int(11) NOT NULL,
+DROP TABLE IF EXISTS `exam`;
+CREATE TABLE IF NOT EXISTS `exam` (
+  `ID_Exam` int(11) NOT NULL AUTO_INCREMENT,
   `ID_ExamConfig` int(11) NOT NULL DEFAULT '0',
   `ID_User` int(11) NOT NULL DEFAULT '0',
   `score` float DEFAULT NULL,
-  `endTime` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `endTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`ID_Exam`),
+  KEY `ID_ExamConfig` (`ID_ExamConfig`),
+  KEY `ID_User` (`ID_User`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `exam`
+--
+
+INSERT INTO `exam` (`ID_Exam`, `ID_ExamConfig`, `ID_User`, `score`, `endTime`) VALUES
+(52, 8, 30, NULL, '2018-12-30 18:33:24');
 
 -- --------------------------------------------------------
 
@@ -425,20 +439,23 @@ CREATE TABLE `exam` (
 -- Cấu trúc bảng cho bảng `exam_config`
 --
 
-CREATE TABLE `exam_config` (
-  `ID_ExamConfig` int(11) NOT NULL,
+DROP TABLE IF EXISTS `exam_config`;
+CREATE TABLE IF NOT EXISTS `exam_config` (
+  `ID_ExamConfig` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Num_Question` int(11) DEFAULT NULL,
   `Totaltime` int(11) DEFAULT NULL,
-  `ID_Subject` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_Subject` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_ExamConfig`),
+  KEY `ID_Subject` (`ID_Subject`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `exam_config`
 --
 
 INSERT INTO `exam_config` (`ID_ExamConfig`, `Name`, `Num_Question`, `Totaltime`, `ID_Subject`) VALUES
-(8, 'Đề thi cuối kỳ môn công nghệ web', 40, 60, 1),
+(8, 'Đề thi cuối kỳ môn công nghệ web', 25, 60, 1),
 (9, 'Đề thi giữa kỳ môn mạng máy tính', 15, 30, 2),
 (10, 'Đề thi giữa kỳ môn kiến trúc máy tính', 15, 30, 4),
 (20, 'Đề thi giữa kỳ môn phân tích thiết kế hệ thống', 15, 30, 5);
@@ -449,21 +466,26 @@ INSERT INTO `exam_config` (`ID_ExamConfig`, `Name`, `Num_Question`, `Totaltime`,
 -- Cấu trúc bảng cho bảng `exam_config_user`
 --
 
-CREATE TABLE `exam_config_user` (
-  `ID_ex_us` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `exam_config_user`;
+CREATE TABLE IF NOT EXISTS `exam_config_user` (
+  `ID_ex_us` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_User` int(11) DEFAULT NULL,
-  `ID_ExamConfig` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ID_ExamConfig` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_ex_us`),
+  KEY `ID_User` (`ID_User`),
+  KEY `ID_Exam` (`ID_ExamConfig`)
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `exam_config_user`
 --
 
 INSERT INTO `exam_config_user` (`ID_ex_us`, `ID_User`, `ID_ExamConfig`) VALUES
-(173, 30, 8),
 (174, 30, 9),
 (175, 30, 10),
-(176, 30, 20);
+(176, 30, 20),
+(189, 30, 8),
+(190, 1, 8);
 
 -- --------------------------------------------------------
 
@@ -471,10 +493,44 @@ INSERT INTO `exam_config_user` (`ID_ex_us`, `ID_User`, `ID_ExamConfig`) VALUES
 -- Cấu trúc bảng cho bảng `exam_question`
 --
 
-CREATE TABLE `exam_question` (
+DROP TABLE IF EXISTS `exam_question`;
+CREATE TABLE IF NOT EXISTS `exam_question` (
   `ID_Question` int(11) NOT NULL,
-  `ID_Exam` int(11) NOT NULL
+  `ID_Exam` int(11) NOT NULL,
+  PRIMARY KEY (`ID_Exam`,`ID_Question`),
+  KEY `ID_Question` (`ID_Question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `exam_question`
+--
+
+INSERT INTO `exam_question` (`ID_Question`, `ID_Exam`) VALUES
+(75, 52),
+(77, 52),
+(79, 52),
+(80, 52),
+(82, 52),
+(84, 52),
+(85, 52),
+(86, 52),
+(87, 52),
+(88, 52),
+(89, 52),
+(91, 52),
+(94, 52),
+(97, 52),
+(98, 52),
+(99, 52),
+(101, 52),
+(102, 52),
+(104, 52),
+(106, 52),
+(108, 52),
+(109, 52),
+(112, 52),
+(113, 52),
+(114, 52);
 
 -- --------------------------------------------------------
 
@@ -482,11 +538,14 @@ CREATE TABLE `exam_question` (
 -- Cấu trúc bảng cho bảng `question`
 --
 
-CREATE TABLE `question` (
-  `ID_Question` int(11) NOT NULL,
+DROP TABLE IF EXISTS `question`;
+CREATE TABLE IF NOT EXISTS `question` (
+  `ID_Question` int(11) NOT NULL AUTO_INCREMENT,
   `ContentQs` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `ID_Subject` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `ID_Subject` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID_Question`),
+  KEY `ID_Subject` (`ID_Subject`)
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `question`
@@ -595,10 +654,12 @@ INSERT INTO `question` (`ID_Question`, `ContentQs`, `ID_Subject`) VALUES
 -- Cấu trúc bảng cho bảng `subject`
 --
 
-CREATE TABLE `subject` (
-  `ID_Subject` int(11) NOT NULL,
-  `subjectName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+DROP TABLE IF EXISTS `subject`;
+CREATE TABLE IF NOT EXISTS `subject` (
+  `ID_Subject` int(11) NOT NULL AUTO_INCREMENT,
+  `subjectName` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`ID_Subject`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `subject`
@@ -616,20 +677,22 @@ INSERT INTO `subject` (`ID_Subject`, `subjectName`) VALUES
 -- Cấu trúc bảng cho bảng `users`
 --
 
-CREATE TABLE `users` (
-  `ID_User` int(11) NOT NULL,
-  `firstname` varchar(32) NOT NULL,
-  `lastname` varchar(32) NOT NULL,
-  `email` varchar(64) NOT NULL,
-  `contact_number` varchar(64) NOT NULL,
-  `address` text NOT NULL,
-  `password` varchar(512) NOT NULL,
-  `access_level` varchar(16) NOT NULL,
-  `access_code` text NOT NULL,
-  `status` int(11) NOT NULL COMMENT '0=pending,1=confirmed',
-  `created` datetime NOT NULL,
-  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='admin and customer users';
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `ID_User` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` varchar(32) DEFAULT NULL,
+  `lastname` varchar(32) DEFAULT NULL,
+  `email` varchar(64) DEFAULT NULL,
+  `contact_number` varchar(64) DEFAULT NULL,
+  `address` text,
+  `password` varchar(512) DEFAULT NULL,
+  `access_level` varchar(16) DEFAULT NULL,
+  `access_code` text,
+  `status` int(11) DEFAULT NULL COMMENT '0=pending,1=confirmed',
+  `created` datetime DEFAULT NULL,
+  `modified` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID_User`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='admin and customer users';
 
 --
 -- Đang đổ dữ liệu cho bảng `users`
@@ -637,7 +700,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID_User`, `firstname`, `lastname`, `email`, `contact_number`, `address`, `password`, `access_level`, `access_code`, `status`, `created`, `modified`) VALUES
 (1, 'Mike', 'Dalisay', 'mike@example.com', '0999999999', 'Blk. 24 A, Lot 6, Ph. 3, Peace Village', '$2y$10$AUBptrm9sQF696zr8Hv31On3x4wqnTihdCLocZmGLbiDvyLpyokL.', 'Customer', '', 1, '0000-00-00 00:00:00', '2018-12-09 09:32:46'),
-(2, 'Lauro', 'Abogne', 'lauro@eacomm.com', '08888888', 'Pasig City', '$2y$10$it4i11kRKrB19FfpPRWsRO5qtgrgajL7NnxOq180MsIhCKhAmSdDa', 'Admin', '', 1, '0000-00-00 00:00:00', '2018-12-08 16:31:33'),
+(2, 'Lauro', 'Abogne', 'lauro@eacomm.com', '08888888', 'Pasig City', '$2y$10$it4i11kRKrB19FfpPRWsRO5qtgrgajL7NnxOq180MsIhCKhAmSdDa', 'Customer', '', 1, '0000-00-00 00:00:00', '2018-12-29 04:27:57'),
 (4, 'Darwin', 'Dalisay', 'darwin@example.com', '9331868359', 'Blk 24 A Lot 6 Ph 3\r\nPeace Village, San Luis', '$2y$10$tLq9lTKDUt7EyTFhxL0QHuen/BgO9YQzFYTUyH50kJXLJ.ISO3HAO', 'Admin', 'ILXFBdMAbHVrJswNDnm231cziO8FZomn', 1, '2014-10-29 17:31:09', '2018-12-08 16:31:33'),
 (7, 'Marisol Jane', 'Dalisay', 'mariz@gmail.com', '09998765432', 'Blk. 24 A, Lot 6, Ph. 3, Peace Village', 'mariz', 'Admin', '', 1, '2015-02-25 09:35:52', '2018-12-08 16:31:33'),
 (9, 'Marykris', 'De Leon', 'marykrisdarell.deleon@gmail.com', '09194444444', 'Project 4, QC', '$2y$10$uUy7D5qmvaRYttLCx9wnU.WOD3/8URgOX7OBXHPpWyTDjU4ZteSEm', 'Admin', '', 1, '2015-02-27 14:28:46', '2018-12-08 16:31:33'),
@@ -647,113 +710,7 @@ INSERT INTO `users` (`ID_User`, `firstname`, `lastname`, `email`, `contact_numbe
 (20, 'Tim', 'Duncan', 'tim@example.com', '9999999', 'San Antonio, Texas, USA', '$2y$10$9OSKHLhiDdBkJTmd3VLnQeNPCtyH1IvZmcHrz4khBMHdxc8PLX5G6', 'Admin', '0X4JwsRmdif8UyyIHSOUjhZz9tva3Czj', 1, '2016-05-26 01:25:59', '2018-12-25 16:56:30'),
 (21, 'Tony', 'Parker', 'tony@example.com', '8888888', 'Blk 24 A Lot 6 Ph 3\r\nPeace Village, San Luis', '$2y$10$lBJfvLyl/X5PieaztTYADOxOQeZJCqETayF.O9ld17z3hcKSJwZae', 'Admin', 'THM3xkZzXeza5ISoTyPKl6oLpVa88tYl', 1, '2016-05-26 01:29:01', '2018-12-08 16:31:33'),
 (29, 'Lê Công', 'Dũng', 'congdung2498@gmail.com', '01627317786', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Admin', 'NgXfDBtIftJfqzk751IqnsqiLiW1CTBo', 1, '2018-12-04 23:29:41', '2018-12-08 16:31:33'),
-(30, 'Hoàng Thị ', 'Trang', 'tranght62@wru.vn', '123123', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Customer', 'SsdfsDFSFDFSdfsDsDsfSSDfFSdESDF', 1, '2018-12-20 23:08:51', '2018-12-26 13:05:21');
-
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `answer`
---
-ALTER TABLE `answer`
-  ADD PRIMARY KEY (`ID_Answer`),
-  ADD KEY `answer` (`ID_Question`);
-
---
--- Chỉ mục cho bảng `exam`
---
-ALTER TABLE `exam`
-  ADD PRIMARY KEY (`ID_Exam`),
-  ADD KEY `ID_ExamConfig` (`ID_ExamConfig`),
-  ADD KEY `ID_User` (`ID_User`);
-
---
--- Chỉ mục cho bảng `exam_config`
---
-ALTER TABLE `exam_config`
-  ADD PRIMARY KEY (`ID_ExamConfig`),
-  ADD KEY `ID_Subject` (`ID_Subject`);
-
---
--- Chỉ mục cho bảng `exam_config_user`
---
-ALTER TABLE `exam_config_user`
-  ADD PRIMARY KEY (`ID_ex_us`),
-  ADD KEY `ID_User` (`ID_User`),
-  ADD KEY `ID_Exam` (`ID_ExamConfig`);
-
---
--- Chỉ mục cho bảng `exam_question`
---
-ALTER TABLE `exam_question`
-  ADD PRIMARY KEY (`ID_Exam`,`ID_Question`),
-  ADD KEY `ID_Question` (`ID_Question`);
-
---
--- Chỉ mục cho bảng `question`
---
-ALTER TABLE `question`
-  ADD PRIMARY KEY (`ID_Question`),
-  ADD KEY `ID_Subject` (`ID_Subject`);
-
---
--- Chỉ mục cho bảng `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`ID_Subject`);
-
---
--- Chỉ mục cho bảng `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`ID_User`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `answer`
---
-ALTER TABLE `answer`
-  MODIFY `ID_Answer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
-
---
--- AUTO_INCREMENT cho bảng `exam`
---
-ALTER TABLE `exam`
-  MODIFY `ID_Exam` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
-
---
--- AUTO_INCREMENT cho bảng `exam_config`
---
-ALTER TABLE `exam_config`
-  MODIFY `ID_ExamConfig` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
-
---
--- AUTO_INCREMENT cho bảng `exam_config_user`
---
-ALTER TABLE `exam_config_user`
-  MODIFY `ID_ex_us` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
-
---
--- AUTO_INCREMENT cho bảng `question`
---
-ALTER TABLE `question`
-  MODIFY `ID_Question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
-
---
--- AUTO_INCREMENT cho bảng `subject`
---
-ALTER TABLE `subject`
-  MODIFY `ID_Subject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT cho bảng `users`
---
-ALTER TABLE `users`
-  MODIFY `ID_User` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+(30, 'Hoàng Thị ', 'Trang', 'tranght62@wru.vn', '123123', 'Hà Nội', '$2y$10$UTQ4HqnihimRmypHplcGjO0MC2tVOL3JyeuNFsJEBeyFoozlsas3C', 'Customer', 'SsdfsDFSFDFSdfsDsDsfSSDfFSdESDF', 1, '2018-12-20 23:08:51', '2018-12-26 15:27:18');
 
 --
 -- Các ràng buộc cho các bảng đã đổ
