@@ -23,12 +23,23 @@ if(!$user->accessCodeExists()){
  
 // redirect to login
 else{
-     
+    if(!$user->checkStatus()){
     // update status
     $user->status=1;
     $user->updateStatusByAccessCode();
      
     // and the redirect
     header("Location: {$home_url}login.php?action=email_verified");
+    // kich hoat
+    }
+    else{ //reset passw
+        if(! $user->resetPassw()){
+            die("ERROR.");
+        }
+        else{
+            header("Location: {$home_url}login.php?action=email_verified");
+        }
+    }
+   
 }
 ?>
