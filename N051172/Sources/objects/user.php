@@ -323,6 +323,73 @@ function accessCodeExists(){
     return false;
     
 }
+function checkStatus(){
+ 
+    // query to check if access_code exists
+    $query = "SELECT status
+            FROM " . $this->table_name . "
+            WHERE status=1 and access_code = ?
+            LIMIT 0,1";
+ 
+    // prepare the query
+    $stmt = $this->conn->prepare( $query );
+ 
+    // sanitize
+    $this->access_code=htmlspecialchars(strip_tags($this->access_code));
+ 
+    // bind given access_code value
+    $stmt->bindParam(1, $this->access_code);
+ 
+    // execute the query
+    $stmt->execute();
+ 
+    // get number of rows
+    $num = $stmt->rowCount();
+ 
+    // if access_code exists
+    if($num>0){
+ 
+        // return true because access_code exists in the database
+        return true;
+    }
+ 
+    // return false if access_code does not exist in the database
+    return false;
+    
+}
+function getAccesscode(){
+        $query = "SELECT access_code FROM ". $this->table_name ." where email= :email" ;
+        $stmt = $this->conn->prepare( $query );
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        // bind given access_code value
+        $stmt->bindParam(':email', $this->email);
+    	$stmt->execute();
+		$rs = $stmt->fetch(PDO::FETCH_NUM);
+		return $rs[0];
+}
+function resetPassw(){
+ 
+    // update query
+    $query = "UPDATE " . $this->table_name . "
+            SET password = :password
+            WHERE access_code = :access_code";
+ 
+    // prepare the query
+    $stmt = $this->conn->prepare($query);
+ 
+    // bind the values from the form
+    $password_hash = password_hash('123456', PASSWORD_BCRYPT);
+    $stmt->bindParam(':password', $password_hash);
+    $stmt->bindParam(':access_code', $this->access_code);
+ 
+    // execute the query
+    if($stmt->execute()){
+        return true;
+    }
+ 
+    return false;
+}
+
 public function deleleUser(){
     $query1 = "DELETE FROM exam WHERE ID_User=".$this->ID_User; 
     $stmt1 = $this->conn->prepare( $query1 );
