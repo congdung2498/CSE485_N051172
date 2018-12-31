@@ -67,13 +67,13 @@ if($user->create()){
  
     if($utils->sendEmailViaPhpMail($send_to_email, $subject, $body)){
         echo "<div class='alert alert-success'>
-            Verification link was sent to your email. Click that link to login.
+           Email xác thực đã được gửi. Vui lòng kiểm tra và ấn vào link xác thực để đăng nhập.
         </div>";
     }
  
     else{
         echo "<div class='alert alert-danger'>
-            User was created but unable to send verification email. Please contact admin.
+           Tài khoản đã được tạo nhưng chưa được kích hoạt. 
         </div>";
     }
  
@@ -81,7 +81,7 @@ if($user->create()){
     $_POST=array();
  
 }else{
-    echo "<div class='alert alert-danger' role='alert'>Unable to register. Please try again.</div>";
+    echo "<div class='alert alert-danger' role='alert'>Không thể đăng ký. Vui lòng thử lại.</div>";
 }
     }
 }
@@ -91,22 +91,22 @@ if($user->create()){
     <table class='table table-responsive'>
  
         <tr>
-            <td class='width-30-percent'>Firstname</td>
+            <td class='width-30-percent'>Họ</td>
             <td><input type='text' name='firstname' class='form-control' required value="<?php echo isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname'], ENT_QUOTES) : "";  ?>" /></td>
         </tr>
  
         <tr>
-            <td>Lastname</td>
+            <td>Tên</td>
             <td><input type='text' name='lastname' class='form-control' required value="<?php echo isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname'], ENT_QUOTES) : "";  ?>" /></td>
         </tr>
  
         <tr>
-            <td>Contact Number</td>
+            <td>Số điện thoại</td>
             <td><input type='text' name='contact_number' class='form-control' required value="<?php echo isset($_POST['contact_number']) ? htmlspecialchars($_POST['contact_number'], ENT_QUOTES) : "";  ?>" /></td>
         </tr>
  
         <tr>
-            <td>Address</td>
+            <td>Địa chỉ</td>
             <td><textarea name='address' class='form-control' required><?php echo isset($_POST['address']) ? htmlspecialchars($_POST['address'], ENT_QUOTES) : "";  ?></textarea></td>
         </tr>
  
@@ -116,7 +116,7 @@ if($user->create()){
         </tr>
  
         <tr>
-            <td>Password</td>
+            <td>Mật khẩu</td>
             <td><input type='password' name='password' class='form-control' required id='passwordInput'></td>
         </tr>
  
@@ -124,13 +124,18 @@ if($user->create()){
             <td></td>
             <td>
                 <button type="submit" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-plus"></span> Register
+                    <span class="glyphicon glyphicon-plus"></span> Đăng ký
                 </button>
             </td>
         </tr>
  
     </table>
 </form>
+<style>
+.container{
+    height:1000px;
+}
+</style>
 <?php
  
 echo "</div>";
