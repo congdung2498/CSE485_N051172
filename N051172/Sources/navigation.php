@@ -21,15 +21,23 @@
                 <li <?php echo $page_title=="Hệ thống thi trắc nghiệm trực tuyến" ? "class='active'" : ""; ?>>
                     <a href="<?php echo $home_url; ?>">Trang chủ</a>
                 </li>
+
+                <?php
+            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['access_level']=='Customer'){
+                ?>
+             
                 <li <?php echo $page_title=="Tra cứu điểm thi" ? "class='active'" : ""; ?>>
                     <a href="<?php echo $home_url; ?>user/result/view/result.php">Điểm thi</a>
                 </li>
-            </ul>
+               
+                <?php
+                }
+                ?>
+
+               
+                </ul>
  
             <?php
-            // login and logout options will be here 
-            // check if users / customer was logged in
-// if user was logged in, show "Edit Profile", "Orders" and "Logout" options
 if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['access_level']=='Customer'){
     ?>
     <ul class="nav navbar-nav navbar-right">
@@ -40,6 +48,7 @@ if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['a
                 &nbsp;&nbsp;<span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+                <li><a href="<?php echo $home_url; ?>user/info/view/info.php">Tài khoản</a></li>
                 <li><a href="<?php echo $home_url; ?>logout.php">Đăng xuất</a></li>
             </ul>
         </li>
