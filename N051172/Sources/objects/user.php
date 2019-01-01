@@ -75,25 +75,19 @@ class User{
         // } else {
         //     echo 0 ;
         // }
-        $query = "UPDATE  ".$this->table_name." SET access_level = :access_level,status = :status where email = :email";
+        $query = "UPDATE  ".$this->table_name." SET firstname = :firstname, lastname = :lastname, contact_number = :contact_number, address = :address, access_level = :access_level,status = :status, email = :email where ID_User = :ID_User";
 		// echo $query;
 		$stmt = $this->conn->prepare($query);
-
-        $this->firstname=htmlspecialchars(strip_tags($this->firstname));
-        $this->lastname=htmlspecialchars(strip_tags($this->lastname));
-        $this->email=htmlspecialchars(strip_tags($this->email));
-        $this->contact_number=htmlspecialchars(strip_tags($this->contact_number));
-        $this->address=htmlspecialchars(strip_tags($this->address));
-        $this->password=htmlspecialchars(strip_tags($this->password));
-        $this->access_level=htmlspecialchars(strip_tags($this->access_level));
-        $this->access_code=htmlspecialchars(strip_tags($this->access_code));
-        $this->status=htmlspecialchars(strip_tags($this->status));
 
 
 		$stmt->bindParam(':access_level',$this->access_level);
         $stmt->bindParam(':status', $this->status);
         $stmt->bindParam(':email', $this->email);
-
+        $stmt->bindParam(':ID_User', $this->ID_User);
+        $stmt->bindParam(':firstname', $this->firstname);
+        $stmt->bindParam(':lastname', $this->lastname);
+        $stmt->bindParam(':address', $this->address);
+        $stmt->bindParam(':contact_number', $this->contact_number);
 
 		if ($stmt->execute()) {
 			echo 1;
@@ -388,6 +382,69 @@ function resetPassw(){
     }
  
     return false;
+}
+
+public function getInfo($ID){
+    $query = "SELECT ID_User,firstname,lastname,email,contact_number,address,access_level from users where ID_User=".$ID;
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+    $data=array();
+    while ($rs = $stmt->fetch(PDO::FETCH_ASSOC)) {
+       $row=array();
+       $row['ID_User']=$rs["ID_User"];
+       $row['firstname']=$rs["firstname"];
+       $row['lastname']=$rs["lastname"];
+       $row['email']=$rs["email"];
+       $row['contact_number']=$rs["contact_number"];
+       $row['address']=$rs["address"];
+       $row['access_level']=$rs["access_level"];
+       $data[]=$row;
+}
+$jsonData=array();
+$jsonData['record']=$data;
+echo json_encode($jsonData);
+}
+
+public function updateInfo(){
+    $query = "UPDATE  ".$this->table_name." SET firstname = :firstname, lastname = :lastname, contact_number = :contact_number, address = :address,  email = :email where ID_User = :ID_User";
+    // echo $query;
+    $stmt = $this->conn->prepare($query);
+
+
+    $stmt->bindParam(':email', $this->email);
+    $stmt->bindParam(':ID_User', $this->ID_User);
+    $stmt->bindParam(':firstname', $this->firstname);
+    $stmt->bindParam(':lastname', $this->lastname);
+    $stmt->bindParam(':address', $this->address);
+    $stmt->bindParam(':contact_number', $this->contact_number);
+
+    if ($stmt->execute()) {
+        echo 1;
+    }else{
+        $this->showError($stmt);
+        echo 0;
+    }
+
+}
+
+public function checkPass(){
+    $query = "SELECT password FROM users where ID_User=".$this->ID_User;
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+	$rs = $stmt->fetch(PDO::FETCH_NUM);
+    if(password_verify($this->password, $rs[0])) return 1;
+    else return 0;
+}
+public function updatePass(){
+    $query = "Update ".$this->table_name." set password = :password where ID_User=".$this->ID_User;
+    $stmt = $this->conn->prepare( $query );
+    $password_hash = password_hash($this->password, PASSWORD_BCRYPT);
+    $stmt->bindParam(':password', $password_hash);
+    if ($stmt->execute()) {
+        echo 1;
+    }else{
+        echo 0;
+    }
 }
 
 public function deleleUser(){
