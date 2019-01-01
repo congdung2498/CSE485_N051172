@@ -10,6 +10,7 @@
 	$db = $database->getConnection();
 	$user = new User($db);
 
+	$user->ID_User=$request->user->ID_User;
 	$user->firstname = $request->user->firstname;
 	$user->lastname = $request->user->lastname;
 	$user->contact_number = $request->user->contact_number;
