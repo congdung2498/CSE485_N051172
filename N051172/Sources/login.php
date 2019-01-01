@@ -100,6 +100,7 @@ if($access_denied){
                     echo "<input type='text' name='email' class='form-control' placeholder='Email' required autofocus />";
                     echo "<input type='password' name='password' class='form-control' placeholder='Password' required />";
                     echo "<input type='submit' class='btn btn-lg btn-primary btn-block' value='Đăng nhập' />";
+                    echo"<a href=".$home_url."forgotPass.php>Bạn đã quên mật khẩu?</a>";
                 echo "</form>";
             echo "</div>";
         echo "</div>";
