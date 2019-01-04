@@ -426,12 +426,7 @@ CREATE TABLE IF NOT EXISTS `exam` (
   KEY `ID_User` (`ID_User`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Đang đổ dữ liệu cho bảng `exam`
---
 
-INSERT INTO `exam` (`ID_Exam`, `ID_ExamConfig`, `ID_User`, `score`, `endTime`) VALUES
-(52, 8, 30, NULL, '2018-12-30 18:33:24');
 
 -- --------------------------------------------------------
 
@@ -500,37 +495,6 @@ CREATE TABLE IF NOT EXISTS `exam_question` (
   PRIMARY KEY (`ID_Exam`,`ID_Question`),
   KEY `ID_Question` (`ID_Question`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Đang đổ dữ liệu cho bảng `exam_question`
---
-
-INSERT INTO `exam_question` (`ID_Question`, `ID_Exam`) VALUES
-(75, 52),
-(77, 52),
-(79, 52),
-(80, 52),
-(82, 52),
-(84, 52),
-(85, 52),
-(86, 52),
-(87, 52),
-(88, 52),
-(89, 52),
-(91, 52),
-(94, 52),
-(97, 52),
-(98, 52),
-(99, 52),
-(101, 52),
-(102, 52),
-(104, 52),
-(106, 52),
-(108, 52),
-(109, 52),
-(112, 52),
-(113, 52),
-(114, 52);
 
 -- --------------------------------------------------------
 
